@@ -3,10 +3,12 @@ import styled from "styled-components";
 import Navigation from "./ui/Navigation";
 import Logo from "./ui/Logo";
 import Search from "./ui/Search";
-import Avatar from "./ui/Avatar";
+import Avatar from "./Profile/Avatar";
 import Button from "./ui/Button";
 
-const StyledHeader = styled.div``;
+const StyledHeader = styled.div`
+  margin-bottom: 6px;
+`;
 
 const NavigationWrap = styled.div`
   margin-top: 16px;

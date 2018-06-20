@@ -4,7 +4,7 @@ import styled from "styled-components";
 const size = {
   s: "7px 24px",
   m: "9px 27px",
-  l: "15px 15px"
+  l: "10.5px 15px"
 };
 
 const StyledButton = styled.button`
