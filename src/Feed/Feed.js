@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Tweet from "./Tweet";
 
 const TextLink = styled.a`
@@ -9,6 +10,19 @@ const TextLink = styled.a`
 const LittleText = styled.span`
   line-height: 22px;
   font-size: 16px;
+`;
+
+const StyledLink = styled(Link)`
+  color: #1da1f2;
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 const tweets = [
@@ -64,9 +78,9 @@ const tweets = [
       </LittleText>
     ),
     img: process.env.PUBLIC_URL + "tweetPicture2.jpg",
-    comments: "",
-    share: "",
-    likes: ""
+    comments: 1,
+    share: 1,
+    likes: 1
   }
 ];
 
@@ -107,9 +121,15 @@ export default function() {
   return (
     <Feed>
       <FeedHead>
-        <Tweets>Tweets</Tweets>
-        <Replies>Tweets & replies</Replies>
-        <Media>Media</Media>
+        <StyledLink to="/EveryInteract/">
+          <Tweets>Tweets</Tweets>
+        </StyledLink>
+        <StyledLink to="/EveryInteract/with_replies">
+          <Replies>Tweets & replies</Replies>
+        </StyledLink>
+        <StyledLink to="/EveryInteract/media">
+          <Media>Media</Media>
+        </StyledLink>
       </FeedHead>
       {tweets.map(tweet => (
         <Tweet

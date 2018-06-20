@@ -7,7 +7,9 @@ import Avatar from "./Profile/Avatar";
 import Button from "./ui/Button";
 
 const StyledHeader = styled.div`
-  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: #fff;
 `;
 
 const NavigationWrap = styled.div`

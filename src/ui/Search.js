@@ -4,7 +4,7 @@ import loupe from "./icons/loupe.svg";
 
 const Search = styled.input`
   background: #f5f8fa;
-  border: 1px solid #e6ecf0;
+  border: 2px solid #e6ecf0;
   border-radius: 100px;
   font-size: 12px;
   color: #687b8a;
@@ -13,6 +13,10 @@ const Search = styled.input`
   padding-bottom: 8px;
   max-width: 220px;
   width: 100%;
+  &:focus {
+    border: 2px solid #009de0;
+    background: #fff;
+  }
 `;
 
 const SearchWrap = styled.div`

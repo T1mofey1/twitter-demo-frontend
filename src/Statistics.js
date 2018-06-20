@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Button from "./ui/Button";
 import MoreOptions from "./ui/MoreOptions";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const ProfieNav = styled.div`
   display: flex;
@@ -74,21 +79,31 @@ function Statistics() {
         <div className="row">
           <div className="col-lg-offset-3 col-lg-4">
             <ProfieNav>
-              <StatisticsBtn active={true} quanity="8,058">
-                Tweets
-              </StatisticsBtn>
-              <StatisticsBtn active={false} quanity="721">
-                Following
-              </StatisticsBtn>
-              <StatisticsBtn active={false} quanity="1,815">
-                Tweets
-              </StatisticsBtn>
-              <StatisticsBtn active={false} quanity="460">
-                Tweets
-              </StatisticsBtn>
-              <StatisticsBtn active={false} quanity="2">
-                Tweets
-              </StatisticsBtn>
+              <StyledLink to="/EveryInteract/">
+                <StatisticsBtn active={true} quanity="8,058">
+                  Tweets
+                </StatisticsBtn>
+              </StyledLink>
+              <StyledLink to="/EveryInteract/following">
+                <StatisticsBtn active={false} quanity="721">
+                  Following
+                </StatisticsBtn>
+              </StyledLink>
+              <StyledLink to="/EveryInteract/followers">
+                <StatisticsBtn active={false} quanity="1,815">
+                  followers
+                </StatisticsBtn>
+              </StyledLink>
+              <StyledLink to="/EveryInteract/likes">
+                <StatisticsBtn active={false} quanity="460">
+                  likes
+                </StatisticsBtn>
+              </StyledLink>
+              <StyledLink to="/EveryInteract/lists">
+                <StatisticsBtn active={false} quanity="2">
+                  lists
+                </StatisticsBtn>
+              </StyledLink>
             </ProfieNav>
           </div>
           <div className="col-lg-offset-3 col-lg-2">

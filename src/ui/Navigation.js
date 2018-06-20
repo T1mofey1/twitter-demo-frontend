@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import home from "./icons/home.svg";
 import messages from "./icons/messages.svg";
 import moments from "./icons/moments.svg";
@@ -39,10 +40,18 @@ function Navigation(props) {
   return (
     <div>
       <Nav>
-        <Button icon={home}>Home</Button>
-        <Button icon={moments}>Moments</Button>
-        <Button icon={notifications}>Notifications</Button>
-        <Button icon={messages}>Messages</Button>
+        <NavLink to="/EveryInteract">
+          <Button icon={home}>Home</Button>
+        </NavLink>
+        <NavLink to="/Moments">
+          <Button icon={moments}>Moments</Button>
+        </NavLink>
+        <NavLink to="/Notifications">
+          <Button icon={notifications}>Notifications</Button>
+        </NavLink>
+        <NavLink to="/Messages">
+          <Button icon={messages}>Messages</Button>
+        </NavLink>
       </Nav>
     </div>
   );

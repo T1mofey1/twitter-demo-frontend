@@ -22,6 +22,7 @@ const AvatarWrap = styled.div`
 
 const StyledTweet = styled.div`
   padding-left: 71px;
+  padding-right: 12px;
 `;
 
 const TweetHead = styled.div`
@@ -55,6 +56,7 @@ const Text = styled.div`
 
 const Img = styled.img`
   margin-top: 13px;
+  width: 100%;
 `;
 
 const Activity = styled.div`

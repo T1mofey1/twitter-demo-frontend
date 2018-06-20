@@ -18,6 +18,9 @@ const StyledButton = styled.button`
   color: ${props => (props.color === "primary" ? "#fff" : "#1DA1F2")};
   padding: ${props => size[props.size ? props.size : "m"]};
   min-width: ${props => (props.size === "l" ? "128px" : "0")};
+  &:hover {
+    background-color: ${props => (props.size === "m" ? "#E5F5FB;" : "#009DE0;")}
+    border-color: #009DE0;
 `;
 
 function Button(props) {
