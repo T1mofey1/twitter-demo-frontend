@@ -7,7 +7,7 @@ const ProfileImage = styled.img`
 `;
 
 function ImageProfile() {
-  return <ProfileImage src={process.env.PUBLIC_URL + "profileImage.jpg"} />;
+  return <ProfileImage src={process.env.PUBLIC_URL + "img/profileImage.jpg"} />;
 }
 
 export default ImageProfile;

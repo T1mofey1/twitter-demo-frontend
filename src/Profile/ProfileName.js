@@ -1,15 +1,15 @@
-import React from "react";
 import styled from "styled-components";
-import tick from "./tick.svg";
+import tickIcon from "./img/tick-icon.svg";
 
 const Name = styled.div`
+  display: inline-block;
   font-size: 22px;
   position: relative;
   color: #14171a;
-  margin-top: 40px;
   &:after {
     content: "";
-    background-image: url(${props => (props.verifyed === "true" ? tick : "")});
+    background-image: url(${props =>
+      props.verified === true ? tickIcon : ""});
     background-repeat: no-repeat;
     display: block;
     width: 18px;
@@ -17,13 +17,9 @@ const Name = styled.div`
     background-size: contain;
     position: absolute;
     background-size: contain;
-    left: 170px;
+    right: -25px;
     top: 5px;
   }
 `;
 
-function ProfileName(props) {
-  return <Name verifyed={props.verifyed}>{props.children}</Name>;
-}
-
-export default ProfileName;
+export default Name;

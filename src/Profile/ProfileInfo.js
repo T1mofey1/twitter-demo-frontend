@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Button from "../../ui/Button";
-import Avatar from "../Avatar";
+import Button from "../ui/Button";
+import Avatar from "./Avatar";
 import ProfileName from "./ProfileName";
 import UserName from "./UserName";
-import link from "./link.svg";
-import location from "./location.svg";
-import joined from "./joined.svg";
+import linkIcon from "./img/link-icon.svg";
+import locationIcon from "./img/location-icon.svg";
+import joinedIcon from "./img/joined-icon.svg";
 
 const Info = styled.div`
   text-align: left;
   position: relative;
+  margin-top: 40px;
+`;
+
+const UserNameWrap = styled.div`
+  margin-top: 6px;
 `;
 
 const AvatarWrap = styled.div`
@@ -35,20 +40,6 @@ const UserLocation = styled.div`
   margin-top: 13px;
   margin-bottom: 10px;
   margin-left: 20px;
-
-  &:after {
-    content: "";
-    background-image: url(${location});
-    background-repeat: no-repeat;
-    display: block;
-    width: 15px;
-    height: 16px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    left: -24px;
-    top: 2px;
-  }
 `;
 
 const UserLink = styled.a`
@@ -56,20 +47,6 @@ const UserLink = styled.a`
   font-size: 14px;
   margin-left: 20px;
   text-decoration: none;
-
-  &:after {
-    content: "";
-    background-image: url(${link});
-    background-repeat: no-repeat;
-    display: block;
-    width: 16px;
-    height: 17px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    left: -24px;
-    top: 0px;
-  }
 `;
 
 const RegistrationDate = styled.div`
@@ -79,20 +56,6 @@ const RegistrationDate = styled.div`
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 20px;
-
-  &:after {
-    content: "";
-    background-image: url(${joined});
-    background-repeat: no-repeat;
-    display: block;
-    width: 16px;
-    height: 16px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    left: -25px;
-    top: 0px;
-  }
 `;
 
 const ButtonWrap = styled.div`
@@ -101,31 +64,41 @@ const ButtonWrap = styled.div`
   margin-right: 16px;
 `;
 
+const Icon = styled.img`
+position: absolute;
+left -25px;
+`;
+
 export default class ProfileInfo extends Component {
   render() {
     return (
       <Info>
         <AvatarWrap>
-          <Avatar size="l" />
+          <Avatar size="large" />
         </AvatarWrap>
-        <ProfileName verifyed="true">Every Interaction</ProfileName>
-        <UserName href="https://twitter.com/everyinteract">
-          @EveryInteract
-        </UserName>
+        <ProfileName verified={true}>Every Interaction</ProfileName>
+        <UserNameWrap>
+          <UserName to="/Everyinteraction">@EveryInteract</UserName>
+        </UserNameWrap>
         <ProfileDescription>
           UX Design studio focussed problem solving creativity. Design to us is
           how can we make things *work* amazing.
         </ProfileDescription>
-        <UserLocation>London, UK</UserLocation>
+        <UserLocation>
+          <Icon src={locationIcon} alt="location" />London, UK
+        </UserLocation>
         <UserLink href="https://www.everyinteraction.com/">
+          <Icon src={linkIcon} alt="Link" />
           everyinteraction.com
         </UserLink>
-        <RegistrationDate>Joined May 2008</RegistrationDate>
+        <RegistrationDate>
+          <Icon src={joinedIcon} alt="Joined" />Joined May 2008
+        </RegistrationDate>
         <ButtonWrap>
-          <Button color="primary" size="l">
+          <Button color="primary" size="large">
             Tweet to
           </Button>
-          <Button color="primary" size="l">
+          <Button color="primary" size="large">
             Message
           </Button>
         </ButtonWrap>

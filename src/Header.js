@@ -55,9 +55,9 @@ function Header() {
             <Wrap>
               <Search />
               <AvatarWrap>
-                <Avatar size="s" />
+                <Avatar size="small" />
               </AvatarWrap>
-              <Button color="primary" size="s">
+              <Button color="primary" size="small">
                 Tweet
               </Button>
             </Wrap>

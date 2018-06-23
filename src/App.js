@@ -3,9 +3,8 @@ import "flexboxgrid2";
 import "normalize.css";
 import Helmet from "react-helmet";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import "./App.css";
 import Header from "./Header";
-import ProfilePage from "./Profile/ProfilePage";
+import ProfilePage from "./Profile/";
 
 class App extends Component {
   render() {

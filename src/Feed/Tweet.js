@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import format from "date-fns/format";
 import styled from "styled-components";
 import Avatar from "../Profile/Avatar";
-import like from "../ui/icons/like.svg";
-import comments from "../ui/icons/comments.svg";
-import retweet from "../ui/icons/retweet.svg";
-import envelope from "../ui/icons/envelope.svg";
-import pinned from "../ui/icons/pinned.svg";
-import loves from "../ui/icons/loves.svg";
+import likeIcon from "../ui/icons/like-icon.svg";
+import commentsIcon from "../ui/icons/comments-icon.svg";
+import retweetIcon from "../ui/icons/retweet-icon.svg";
+import envelopeIcon from "../ui/icons/envelope-icon.svg";
+import pinnedIcon from "../ui/icons/pinned-icon.svg";
+import lovesIcon from "../ui/icons/loves-icon.svg";
 
 const Feed = styled.div`
   margin-top: 6px;
@@ -65,7 +66,9 @@ const Activity = styled.div`
   dispaly: flex;
 `;
 
-const Comment = styled.div`
+const Comment = styled.button`
+  border: none;
+  background: #fff;
   margin-left: 25px;
   font-weight: 550;
   color: #667580;
@@ -74,7 +77,7 @@ const Comment = styled.div`
   font-size: 13px;
   &:after {
     content: "";
-    background-image: url(${comments});
+    background-image: url(${commentsIcon});
     background-repeat: no-repeat;
     display: block;
     width: 16px;
@@ -87,7 +90,9 @@ const Comment = styled.div`
   }
 `;
 
-const Share = styled.div`
+const Share = styled.button`
+  border: none;
+  background: #fff;
   margin-left: 25px;
   font-weight: 550;
   color: #667580;
@@ -96,7 +101,7 @@ const Share = styled.div`
   font-size: 13px;
   &:after {
     content: "";
-    background-image: url(${retweet});
+    background-image: url(${retweetIcon});
     background-repeat: no-repeat;
     display: block;
     width: 20px;
@@ -109,7 +114,9 @@ const Share = styled.div`
   }
 `;
 
-const Likes = styled.div`
+const Likes = styled.button`
+  border: none;
+  background: #fff;
   margin-left: 25px;
   font-weight: 550;
   color: #e2264d;
@@ -118,7 +125,7 @@ const Likes = styled.div`
   font-size: 13px;
   &:after {
     content: "";
-    background-image: url(${like});
+    background-image: url(${likeIcon});
     background-repeat: no-repeat;
     display: block;
     width: 16px;
@@ -131,7 +138,9 @@ const Likes = styled.div`
   }
 `;
 
-const Liked = styled.div`
+const Liked = styled.button`
+  border: none;
+  background: #fff;
   margin-left: 25px;
   font-weight: 550;
   color: #667580;
@@ -140,7 +149,7 @@ const Liked = styled.div`
   font-size: 13px;
   &:after {
     content: "";
-    background-image: url(${loves});
+    background-image: url(${lovesIcon});
     background-repeat: no-repeat;
     display: block;
     width: 16px;
@@ -153,13 +162,15 @@ const Liked = styled.div`
   }
 `;
 
-const Post = styled.div`
+const Post = styled.button`
+  border: none;
+  background: #fff;
   margin-left: 25px;
   cursor: pointer;
   position: relative;
   &:after {
     content: "";
-    background-image: url(${envelope});
+    background-image: url(${envelopeIcon});
     background-repeat: no-repeat;
     display: block;
     width: 15px;
@@ -180,7 +191,7 @@ const Pinned = styled.div`
   position: relative;
   &:after {
     content: "";
-    background-image: url(${pinned});
+    background-image: url(${pinnedIcon});
     background-repeat: no-repeat;
     display: block;
     width: 11px;
@@ -200,14 +211,14 @@ export default class Tweet extends Component {
         {this.props.pinned ? <Pinned>Pinned Tweet</Pinned> : null}
         <Feed>
           <AvatarWrap>
-            <Avatar size="m" />
+            <Avatar size="medium" />
           </AvatarWrap>
 
           <StyledTweet>
             <TweetHead>
               <Name>{this.props.name}</Name>
-              <UserName>{this.props.username}</UserName>
-              <PostDate>{this.props.date}</PostDate>
+              <UserName to="/Everyinteraction">{this.props.username}</UserName>
+              <PostDate>• {format(this.props.date, "DD.MM.YYYY")}</PostDate>
             </TweetHead>
             <Content>
               <Text>{this.props.text}</Text>

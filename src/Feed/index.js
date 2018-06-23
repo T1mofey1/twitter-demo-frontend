@@ -3,15 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Tweet from "./Tweet";
 
-const TextLink = styled.a`
-  text-decoration: none;
-`;
-
-const LittleText = styled.span`
-  line-height: 22px;
-  font-size: 16px;
-`;
-
 const StyledLink = styled(Link)`
   color: #1da1f2;
   text-decoration: none;
@@ -30,20 +21,20 @@ const tweets = [
     pinned: true,
     name: "Every Interaction",
     username: "@EveryInteract",
-    date: "• 2 Mar 2015",
+    date: 1433019600000,
     text: (
       <span>
         We’ve made some more resources for all you wonderful
-        <TextLink href=""> #design</TextLink> folk
-        <TextLink href="https://www.everyinteraction.com/resources/">
+        <a href=""> #design</a> folk
+        <a href="https://www.everyinteraction.com/resources/">
           {" "}
           everyinteraction.com/resources/
-        </TextLink>
-        <TextLink href=""> #webdesign </TextLink>
-        <TextLink href="">#UI</TextLink>
+        </a>
+        <a href=""> #webdesign </a>
+        <a href="">#UI</a>
       </span>
     ),
-    img: process.env.PUBLIC_URL + "tweetPicture1.jpg",
+    img: process.env.PUBLIC_URL + "img/tweetPicture1.jpg",
     comments: "",
     share: 17,
     likes: 47,
@@ -52,13 +43,13 @@ const tweets = [
   {
     name: "Every Interaction",
     username: "@EveryInteract",
-    date: "• 23h",
+    date: 1464642000000,
     text: (
       <span>
         Our new website concept, Taking you<br /> from… @ Every Interaction{" "}
-        <TextLink href="https://www.instagram.com/p/BNFGrfhBP3M/">
+        <a href="https://www.instagram.com/p/BNFGrfhBP3M/">
           instagram.com/p/BNFGrfhBP3M/
-        </TextLink>
+        </a>
       </span>
     ),
     img: "",
@@ -70,14 +61,14 @@ const tweets = [
   {
     name: "Every Interaction",
     username: "@EveryInteract",
-    date: "• Nov 18",
+    date: 1496178000000,
     text: (
-      <LittleText>
+      <span>
         Variable web fonts are coming, and will open a world of opportunities
         for weight use online
-      </LittleText>
+      </span>
     ),
-    img: process.env.PUBLIC_URL + "tweetPicture2.jpg",
+    img: process.env.PUBLIC_URL + "img/tweetPicture2.jpg",
     comments: 1,
     share: 1,
     likes: 1

@@ -50,13 +50,11 @@ const Quanity = styled.div`
   }
 `;
 
-const StatisticsBtn = function(props, active, quanity) {
+const StatisticsBtn = function(props) {
   return (
     <StatisticsBtnWrap active={props.active}>
       <Text active={props.active}>{props.children}</Text>
-      <Quanity quanity={quanity} active={props.active}>
-        {props.quanity}
-      </Quanity>
+      <Quanity active={props.active}>{props.quanity}</Quanity>
     </StatisticsBtnWrap>
   );
 };
@@ -85,30 +83,22 @@ function Statistics() {
                 </StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/following">
-                <StatisticsBtn active={false} quanity="721">
-                  Following
-                </StatisticsBtn>
+                <StatisticsBtn quanity="721">Following</StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/followers">
-                <StatisticsBtn active={false} quanity="1,815">
-                  followers
-                </StatisticsBtn>
+                <StatisticsBtn quanity="1,815">followers</StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/likes">
-                <StatisticsBtn active={false} quanity="460">
-                  likes
-                </StatisticsBtn>
+                <StatisticsBtn quanity="460">likes</StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/lists">
-                <StatisticsBtn active={false} quanity="2">
-                  lists
-                </StatisticsBtn>
+                <StatisticsBtn quanity="2">lists</StatisticsBtn>
               </StyledLink>
             </ProfieNav>
           </div>
           <div className="col-lg-offset-3 col-lg-2">
             <ButtonWrap>
-              <Button size="m">Follow</Button>
+              <Button size="medium">Follow</Button>
               <OptionsWrap>
                 <MoreOptions />
               </OptionsWrap>
