@@ -1,13 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import Navigation from "./ui/Navigation";
-import Logo from "./ui/Logo";
-import Search from "./ui/Search";
-import Avatar from "./Profile/Avatar";
-import Button from "./ui/Button";
+import React from 'react';
+import styled from 'styled-components';
+import Navigation from './ui/Navigation';
+import Logo from './ui/Logo';
+import Search from './ui/Search';
+import Avatar from './Profile/Avatar';
+import Button from './ui/Button';
 
 const StyledHeader = styled.div`
-  padding-bottom: 6px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   background: #fff;
 `;

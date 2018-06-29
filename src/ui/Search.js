@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import loupe from "./icons/loupe.svg";
+import React from 'react';
+import styled from 'styled-components';
+import loupe from './icons/loupe.svg';
 
 const Search = styled.input`
   background: #f5f8fa;

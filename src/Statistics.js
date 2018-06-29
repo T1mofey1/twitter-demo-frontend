@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Button from "./ui/Button";
-import MoreOptions from "./ui/MoreOptions";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Button from './ui/Button';
+import MoreOptions from './ui/MoreOptions';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -19,8 +19,7 @@ const StatisticsNav = styled.div`
 `;
 
 const StatisticsBtnWrap = styled.div`
-  border-bottom: ${props =>
-    props.active === true ? "4px solid #1DA1F2" : NaN};
+  border-bottom: ${({ active }) => (active === true ? '4px solid #1DA1F2' : 'none')};
   cursor: pointer;
   line-height: 21px;
   font-size: 12px;
@@ -43,21 +42,25 @@ const Quanity = styled.div`
   line-height: 21px;
   font-size: 18px;
   font-weight: bold;
-  color: ${props => (props.active === true ? "#1DA1F2;" : "#788a98;")};
+  color: ${({ active }) => (active === true ? '#1DA1F2;' : '#788a98;')};
 
   &:hover {
     color: #1da1f2;
   }
 `;
 
-const StatisticsBtn = function(props) {
+function StatisticsBtn({ active, children, quanity }) {
   return (
-    <StatisticsBtnWrap active={props.active}>
-      <Text active={props.active}>{props.children}</Text>
-      <Quanity active={props.active}>{props.quanity}</Quanity>
+    <StatisticsBtnWrap active={active}>
+      <Text active={active}>
+        {children}
+      </Text>
+      <Quanity active={active}>
+        {quanity}
+      </Quanity>
     </StatisticsBtnWrap>
   );
-};
+}
 
 const ButtonWrap = styled.div`
   display: flex;
@@ -78,27 +81,37 @@ function Statistics() {
           <div className="col-lg-offset-3 col-lg-4">
             <ProfieNav>
               <StyledLink to="/EveryInteract/">
-                <StatisticsBtn active={true} quanity="8,058">
+                <StatisticsBtn active quanity="8,058">
                   Tweets
                 </StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/following">
-                <StatisticsBtn quanity="721">Following</StatisticsBtn>
+                <StatisticsBtn quanity="721">
+Following
+                </StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/followers">
-                <StatisticsBtn quanity="1,815">followers</StatisticsBtn>
+                <StatisticsBtn quanity="1,815">
+followers
+                </StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/likes">
-                <StatisticsBtn quanity="460">likes</StatisticsBtn>
+                <StatisticsBtn quanity="460">
+likes
+                </StatisticsBtn>
               </StyledLink>
               <StyledLink to="/EveryInteract/lists">
-                <StatisticsBtn quanity="2">lists</StatisticsBtn>
+                <StatisticsBtn quanity="2">
+lists
+                </StatisticsBtn>
               </StyledLink>
             </ProfieNav>
           </div>
           <div className="col-lg-offset-3 col-lg-2">
             <ButtonWrap>
-              <Button size="medium">Follow</Button>
+              <Button size="medium">
+Follow
+              </Button>
               <OptionsWrap>
                 <MoreOptions />
               </OptionsWrap>

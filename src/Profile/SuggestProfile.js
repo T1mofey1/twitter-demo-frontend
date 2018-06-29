@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import ProfileName from "./ProfileName";
-import Username from "./UserName";
-import Button from "../ui/Button";
-import deleteIcon from "./img/delete-icon.svg";
+import React from 'react';
+import styled from 'styled-components';
+import ProfileName from './Name';
+import Username from './UserName';
+import Button from '../ui/Button';
+import deleteIcon from './img/delete-icon.svg';
 
 const Profile = styled.div`
   border-bottom: 1px solid #e6ecf0;
@@ -45,22 +45,28 @@ const Delete = styled.img`
   top: 0px;
   cursor: pointer;
 `;
-
-export default function(props) {
+function SuggestProfie({
+  avatar, name, verified, username,
+}) {
   return (
     <Profile>
-      <Avatar
-        src={process.env.PUBLIC_URL + "img/" + props.avatar + ".png"}
-        alt={props.name}
-      />
+      <Avatar src={avatar} />
       <User>
-        <StyledName verified={props.verified}>{props.name}</StyledName>
-        <StyledUsername to={props.username}>{props.username}</StyledUsername>
+        <StyledName verified={verified}>
+          {name}
+        </StyledName>
+        <StyledUsername to={username}>
+          {username}
+        </StyledUsername>
       </User>
       <ButtonWrap>
-        <Button size="extrasmall">Follow</Button>
+        <Button size="extrasmall">
+Follow
+        </Button>
       </ButtonWrap>
       <Delete src={deleteIcon} alt="delete" />
     </Profile>
   );
 }
+
+export default SuggestProfie;

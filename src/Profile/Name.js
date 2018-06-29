@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import tickIcon from "./img/tick-icon.svg";
+import styled from 'styled-components';
+import tickIcon from './img/tick-icon.svg';
 
 const Name = styled.div`
   display: inline-block;
@@ -7,9 +7,8 @@ const Name = styled.div`
   position: relative;
   color: #14171a;
   &:after {
-    content: "";
-    background-image: url(${props =>
-      props.verified === true ? tickIcon : ""});
+    content: '';
+    background-image: url(${({ verified }) => (verified === true ? tickIcon : '')});
     background-repeat: no-repeat;
     display: block;
     width: 18px;

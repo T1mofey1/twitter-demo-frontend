@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import format from "date-fns/format";
-import styled from "styled-components";
-import Avatar from "../Profile/Avatar";
-import likeIcon from "../ui/icons/like-icon.svg";
-import commentsIcon from "../ui/icons/comments-icon.svg";
-import retweetIcon from "../ui/icons/retweet-icon.svg";
-import envelopeIcon from "../ui/icons/envelope-icon.svg";
-import pinnedIcon from "../ui/icons/pinned-icon.svg";
-import lovesIcon from "../ui/icons/loves-icon.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import processString from 'react-process-string';
+import formatDate from '../utills/formatDate';
+import Avatar from '../Profile/Avatar';
+import likeIcon from '../ui/icons/like-icon.svg';
+import commentsIcon from '../ui/icons/comments-icon.svg';
+import retweetIcon from '../ui/icons/retweet-icon.svg';
+import envelopeIcon from '../ui/icons/envelope-icon.svg';
+import pinnedIcon from '../ui/icons/pinned-icon.svg';
+import lovesIcon from '../ui/icons/loves-icon.svg';
 
 const Feed = styled.div`
   margin-top: 6px;
@@ -64,123 +66,59 @@ const Activity = styled.div`
   margin-top: 13px;
   padding-bottom: 10px;
   dispaly: flex;
+  justify-content: center;
 `;
 
 const Comment = styled.button`
+  display: flex;
   border: none;
   background: #fff;
-  margin-left: 25px;
   font-weight: 550;
   color: #667580;
   cursor: pointer;
   position: relative;
   font-size: 13px;
-  &:after {
-    content: "";
-    background-image: url(${commentsIcon});
-    background-repeat: no-repeat;
-    display: block;
-    width: 16px;
-    height: 16px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    top: 0px;
-    left: -25px;
-  }
 `;
 
 const Share = styled.button`
+  display: flex;
   border: none;
   background: #fff;
-  margin-left: 25px;
   font-weight: 550;
   color: #667580;
   cursor: pointer;
   position: relative;
   font-size: 13px;
-  &:after {
-    content: "";
-    background-image: url(${retweetIcon});
-    background-repeat: no-repeat;
-    display: block;
-    width: 20px;
-    height: 14px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    top: 0px;
-    left: -25px;
-  }
 `;
 
 const Likes = styled.button`
+  display: flex;
   border: none;
   background: #fff;
-  margin-left: 25px;
   font-weight: 550;
   color: #e2264d;
   cursor: pointer;
   position: relative;
   font-size: 13px;
-  &:after {
-    content: "";
-    background-image: url(${likeIcon});
-    background-repeat: no-repeat;
-    display: block;
-    width: 16px;
-    height: 14px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    top: 0px;
-    left: -25px;
-  }
 `;
 
 const Liked = styled.button`
+  display: flex;
   border: none;
   background: #fff;
-  margin-left: 25px;
   font-weight: 550;
   color: #667580;
   cursor: pointer;
   position: relative;
   font-size: 13px;
-  &:after {
-    content: "";
-    background-image: url(${lovesIcon});
-    background-repeat: no-repeat;
-    display: block;
-    width: 16px;
-    height: 14px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    top: 0px;
-    left: -25px;
-  }
 `;
 
 const Post = styled.button`
+  display: flex;
   border: none;
   background: #fff;
-  margin-left: 25px;
   cursor: pointer;
   position: relative;
-  &:after {
-    content: "";
-    background-image: url(${envelopeIcon});
-    background-repeat: no-repeat;
-    display: block;
-    width: 15px;
-    height: 14px;
-    background-size: contain;
-    position: absolute;
-    background-size: contain;
-    top: 0px;
-    left: -25px;
-  }
 `;
 
 const Pinned = styled.div`
@@ -190,7 +128,7 @@ const Pinned = styled.div`
   padding-left: 71px;
   position: relative;
   &:after {
-    content: "";
+    content: '';
     background-image: url(${pinnedIcon});
     background-repeat: no-repeat;
     display: block;
@@ -204,47 +142,146 @@ const Pinned = styled.div`
   }
 `;
 
-export default class Tweet extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.pinned ? <Pinned>Pinned Tweet</Pinned> : null}
-        <Feed>
-          <AvatarWrap>
-            <Avatar size="medium" />
-          </AvatarWrap>
+const Icon = styled.img`
+  padding-right: 3px;
+`;
 
-          <StyledTweet>
-            <TweetHead>
-              <Name>{this.props.name}</Name>
-              <UserName to="/Everyinteraction">{this.props.username}</UserName>
-              <PostDate>• {format(this.props.date, "DD.MM.YYYY")}</PostDate>
-            </TweetHead>
-            <Content>
-              <Text>{this.props.text}</Text>
-              {this.props.img ? <Img src={this.props.img} /> : null}
-            </Content>
-            <Activity>
-              <div className="row">
-                <div className="col-lg-2">
-                  <Comment>{this.props.comments}</Comment>
-                </div>
-                <div className="col-lg-2">
-                  <Share>{this.props.share}</Share>
-                </div>
-                <div className="col-lg-2">
-                  {this.props.liked ? (
-                    <Likes>{this.props.likes}</Likes>
-                  ) : (
-                    <Liked>{this.props.likes}</Liked>
-                  )}
-                </div>
-                <Post />
+const parseText = (text) => {
+  const config = [
+    {
+      regex: /(http|https):\/\/(\S+)\.([a-z]{2,}?)(.*?)( |,|$|\.)/gim,
+      fn: (key, result) => (
+        <span>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}
+          >
+            {result[2]}
+            .
+            {result[3]}
+            {result[4]}
+          </a>
+          {result[5]}
+        </span>
+      ),
+    },
+    {
+      regex: /(\S+)\.([a-z]{2,}?)(.*?)( |,|$|\.)/gim,
+      fn: (key, result) => (
+        <span key={key}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`http://${result[1]}.${result[2]}${result[3]}`}
+          >
+            {result[1]}
+            .
+            {result[2]}
+            {result[3]}
+          </a>
+          {result[4]}
+        </span>
+      ),
+    },
+    {
+      regex: /#(\w*)( |,|$|\.)/g,
+      fn: (key, result) => (
+        <span>
+          <Link to={`/hashtag/${result[1]}?src=hash`}>
+            #
+            {result[1]}
+          </Link>
+          {result[2]}
+        </span>
+      ),
+    },
+    {
+      regex: /@(\w*)( |,|$|\.)/g, // regex to match a username
+      fn: (key, result) => (
+        <span>
+          <Link key={key} to={`/${result[1]}`}>
+            @
+            {result[1]}
+          </Link>
+          {result[2]}
+        </span>
+      ),
+    },
+  ];
+
+  return processString(config)(text);
+};
+function Tweet({
+  pinned, name, username, date, text, img, comments, share, likes, liked,
+}) {
+  return (
+    <div>
+      {pinned ? (
+        <Pinned>
+Pinned Tweet
+        </Pinned>
+      ) : null}
+      <Feed>
+        <AvatarWrap>
+          <Avatar size="medium" />
+        </AvatarWrap>
+
+        <StyledTweet>
+          <TweetHead>
+            <Name>
+              {name}
+            </Name>
+            <UserName to="/Everyinteract">
+              {username}
+            </UserName>
+            <PostDate>
+              •
+              {formatDate(date)}
+            </PostDate>
+          </TweetHead>
+          <Content>
+            <Text>
+              {parseText(text)}
+            </Text>
+            {img ? <Img src={img} /> : null}
+          </Content>
+          <Activity>
+            <div className="row">
+              <div className="col-lg-2">
+                <Comment>
+                  <Icon src={commentsIcon} />
+                  {comments}
+                </Comment>
               </div>
-            </Activity>
-          </StyledTweet>
-        </Feed>
-      </div>
-    );
-  }
+              <div className="col-lg-2">
+                <Share>
+                  <Icon src={retweetIcon} />
+                  {share}
+                </Share>
+              </div>
+              <div className="col-lg-2">
+                {liked ? (
+                  <Likes>
+                    <Icon src={likeIcon} />
+                    {likes}
+                  </Likes>
+                ) : (
+                  <Liked>
+                    <Icon src={lovesIcon} />
+                    {likes}
+                  </Liked>
+                )}
+              </div>
+              <Post>
+                <Icon src={envelopeIcon} />
+              </Post>
+            </div>
+          </Activity>
+        </StyledTweet>
+      </Feed>
+    </div>
+  );
 }
+
+export default Tweet;

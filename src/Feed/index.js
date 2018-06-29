@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Tweet from "./Tweet";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Tweet from './Tweet';
 
 const StyledLink = styled(Link)`
   color: #1da1f2;
@@ -19,60 +19,39 @@ const StyledLink = styled(Link)`
 const tweets = [
   {
     pinned: true,
-    name: "Every Interaction",
-    username: "@EveryInteract",
+    name: 'Every Interaction',
+    username: '@EveryInteract',
     date: 1433019600000,
-    text: (
-      <span>
-        We’ve made some more resources for all you wonderful
-        <a href=""> #design</a> folk
-        <a href="https://www.everyinteraction.com/resources/">
-          {" "}
-          everyinteraction.com/resources/
-        </a>
-        <a href=""> #webdesign </a>
-        <a href="">#UI</a>
-      </span>
-    ),
-    img: process.env.PUBLIC_URL + "img/tweetPicture1.jpg",
-    comments: "",
+    text:
+      'We’ve made some more resources for all you wonderful #design folk everyinteraction.com/resources/ #webdesign #UI',
+    img: `${process.env.PUBLIC_URL}img/tweetPicture1.jpg`,
+    comments: '',
     share: 17,
     likes: 47,
-    liked: true
+    liked: true,
   },
   {
-    name: "Every Interaction",
-    username: "@EveryInteract",
-    date: 1464642000000,
-    text: (
-      <span>
-        Our new website concept, Taking you<br /> from… @ Every Interaction{" "}
-        <a href="https://www.instagram.com/p/BNFGrfhBP3M/">
-          instagram.com/p/BNFGrfhBP3M/
-        </a>
-      </span>
-    ),
-    img: "",
+    name: 'Every Interaction',
+    username: '@EveryInteract',
+    date: 1529960400000,
+    text: 'Our new website concept, Taking you from… @EveryInteract instagram.com/p/BNFGrfhBP3M/',
+    img: '',
     comments: 1,
     share: 4,
     likes: 2,
-    liked: false
+    liked: false,
   },
   {
-    name: "Every Interaction",
-    username: "@EveryInteract",
-    date: 1496178000000,
-    text: (
-      <span>
-        Variable web fonts are coming, and will open a world of opportunities
-        for weight use online
-      </span>
-    ),
-    img: process.env.PUBLIC_URL + "img/tweetPicture2.jpg",
+    name: 'Every Interaction',
+    username: '@EveryInteract',
+    date: 1516568400000,
+    text:
+      'Variable web fonts are coming, and will open a world of opportunities for weight use online',
+    img: `${process.env.PUBLIC_URL}img/tweetPicture2.jpg`,
     comments: 1,
     share: 1,
-    likes: 1
-  }
+    likes: 1,
+  },
 ];
 
 const Feed = styled.div`
@@ -108,18 +87,24 @@ const Media = styled.div`
   cursor: pointer;
 `;
 
-export default function() {
+export default function () {
   return (
     <Feed>
       <FeedHead>
         <StyledLink to="/EveryInteract/">
-          <Tweets>Tweets</Tweets>
+          <Tweets>
+Tweets
+          </Tweets>
         </StyledLink>
         <StyledLink to="/EveryInteract/with_replies">
-          <Replies>Tweets & replies</Replies>
+          <Replies>
+Tweets & replies
+          </Replies>
         </StyledLink>
         <StyledLink to="/EveryInteract/media">
-          <Media>Media</Media>
+          <Media>
+Media
+          </Media>
         </StyledLink>
       </FeedHead>
       {tweets.map(tweet => (

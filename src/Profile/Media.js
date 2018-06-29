@@ -1,7 +1,28 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import mediaIcon from "./img/media-icon.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import mediaIcon from './img/media-icon.svg';
+
+const mediaFiles = [
+  {
+    picture: `${process.env.PUBLIC_URL}img/media1.png`,
+  },
+  {
+    picture: `${process.env.PUBLIC_URL}img/media2.png`,
+  },
+  {
+    picture: `${process.env.PUBLIC_URL}img/media3.png`,
+  },
+  {
+    picture: `${process.env.PUBLIC_URL}img/media4.png`,
+  },
+  {
+    picture: `${process.env.PUBLIC_URL}img/media5.png`,
+  },
+  {
+    picture: `${process.env.PUBLIC_URL}img/media6.png`,
+  },
+];
 
 const StyledMedia = styled.div`
   position: relative;
@@ -31,52 +52,19 @@ const Picture = styled.img`
   margin-bottom: 3px;
 `;
 
-function Media(props) {
+function Media() {
   return (
     <div>
       <StyledMedia>
         <Icon src={mediaIcon} alt="Media" />
         <Link to="/EveryInteract/media">
-          <LinkText>522 Photos and videos</LinkText>
+          <LinkText>
+522 Photos and videos
+          </LinkText>
         </Link>
       </StyledMedia>
       <Pictures>
-        <Link to="/media1">
-          <Picture
-            src={process.env.PUBLIC_URL + "/img/media1.png"}
-            alt="Media 1"
-          />
-        </Link>
-        <Link to="/media2">
-          <Picture
-            src={process.env.PUBLIC_URL + "/img/media2.png"}
-            alt="Media 2"
-          />
-        </Link>
-        <Link to="/media3">
-          <Picture
-            src={process.env.PUBLIC_URL + "img/media3.png"}
-            alt="Media 3"
-          />
-        </Link>
-        <Link to="media4">
-          <Picture
-            src={process.env.PUBLIC_URL + "img/media4.png"}
-            alt="Media 4"
-          />
-        </Link>
-        <Link to="/media5">
-          <Picture
-            src={process.env.PUBLIC_URL + "img/media5.png"}
-            alt="Media 5"
-          />
-        </Link>
-        <Link to="/media6">
-          <Picture
-            src={process.env.PUBLIC_URL + "img/media6.png"}
-            alt="Media 6"
-          />
-        </Link>
+        {mediaFiles.map(media => <Picture src={media.picture} />)}
       </Pictures>
     </div>
   );

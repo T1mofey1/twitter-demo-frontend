@@ -1,13 +1,13 @@
-import React from "react";
-import ProfileImage from "./ProfileImage";
-import Statistics from "../Statistics";
-import Feed from "../Feed/index";
-import ProfileInfo from "./ProfileInfo";
-import FollowersUKnow from "./FollowersUKnow";
-import Media from "./Media";
-import WhoToFollow from "./WhoToFollow";
-import TrendList from "./TrendList";
-import Copyright from "../Copyright";
+import React from 'react';
+import ProfileImage from './Image';
+import Statistics from '../Statistics';
+import Feed from '../Feed/index';
+import ProfileInfo from './Info';
+import FollowersUKnow from './FollowersUKnow';
+import Media from './Media';
+import WhoToFollow from './WhoToFollow';
+import TrendList from './TrendList';
+import Copyright from '../Additions';
 
 function ProfilePage() {
   return (
