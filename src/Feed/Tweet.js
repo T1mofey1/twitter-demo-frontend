@@ -146,82 +146,12 @@ const Icon = styled.img`
   padding-right: 3px;
 `;
 
-const parseText = (text) => {
-  const config = [
-    {
-      regex: /(http|https):\/\/(\S+)\.([a-z]{2,}?)(.*?)( |,|$|\.)/gim,
-      fn: (key, result) => (
-        <span>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`${result[1]}://${result[2]}.${result[3]}${result[4]}`}
-          >
-            {result[2]}
-            .
-            {result[3]}
-            {result[4]}
-          </a>
-          {result[5]}
-        </span>
-      ),
-    },
-    {
-      regex: /(\S+)\.([a-z]{2,}?)(.*?)( |,|$|\.)/gim,
-      fn: (key, result) => (
-        <span key={key}>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={`http://${result[1]}.${result[2]}${result[3]}`}
-          >
-            {result[1]}
-            .
-            {result[2]}
-            {result[3]}
-          </a>
-          {result[4]}
-        </span>
-      ),
-    },
-    {
-      regex: /#(\w*)( |,|$|\.)/g,
-      fn: (key, result) => (
-        <span>
-          <Link to={`/hashtag/${result[1]}?src=hash`}>
-            #
-            {result[1]}
-          </Link>
-          {result[2]}
-        </span>
-      ),
-    },
-    {
-      regex: /@(\w*)( |,|$|\.)/g, // regex to match a username
-      fn: (key, result) => (
-        <span>
-          <Link key={key} to={`/${result[1]}`}>
-            @
-            {result[1]}
-          </Link>
-          {result[2]}
-        </span>
-      ),
-    },
-  ];
-
-  return processString(config)(text);
-};
 function Tweet({
   pinned, name, username, date, text, img, comments, share, likes, liked,
 }) {
   return (
     <div>
-      {pinned ? (
-        <Pinned>
-Pinned Tweet
-        </Pinned>
-      ) : null}
+      {pinned && <Pinned>Pinned Tweet</Pinned>}
       <Feed>
         <AvatarWrap>
           <Avatar size="medium" />
@@ -229,21 +159,15 @@ Pinned Tweet
 
         <StyledTweet>
           <TweetHead>
-            <Name>
-              {name}
-            </Name>
-            <UserName to="/Everyinteract">
-              {username}
-            </UserName>
+            <Name>{name}</Name>
+            <UserName to="/Everyinteract">{username}</UserName>
             <PostDate>
               •
               {formatDate(date)}
             </PostDate>
           </TweetHead>
           <Content>
-            <Text>
-              {parseText(text)}
-            </Text>
+            <Text>{text}</Text>
             {img ? <Img src={img} /> : null}
           </Content>
           <Activity>
