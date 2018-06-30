@@ -30,10 +30,14 @@ const StyledNavLink = styled(NavLink)`
   padding-left: 9px;
   padding-right: 9px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid transparent;
   display: flex;
   &:hover {
     border-bottom: 2px solid #1c94e0;
+  }
+  &.active {
+    border-bottom: 2px solid #1c94e0;
+    color: #1da1f2;
   }
 `;
 
@@ -41,29 +45,21 @@ function Navigation() {
   return (
     <div>
       <Nav>
-        <StyledNavLink to="/EveryInteract">
+        <StyledNavLink to="/">
           <Icon src={homeIcon} />
-          <Button>
-Home
-          </Button>
+          <Button>Home</Button>
         </StyledNavLink>
         <StyledNavLink to="/Moments">
           <Icon src={momentsIcon} />
-          <Button>
-Moments
-          </Button>
+          <Button>Moments</Button>
         </StyledNavLink>
         <StyledNavLink to="/Notifications">
           <Icon src={notificationsIcon} />
-          <Button>
-Notifications
-          </Button>
+          <Button>Notifications</Button>
         </StyledNavLink>
         <StyledNavLink to="/Messages">
           <Icon src={messagesIcon} />
-          <Button>
-Messages
-          </Button>
+          <Button>Messages</Button>
         </StyledNavLink>
       </Nav>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ProfileImage = styled.img`
-  max-height: 379px;
+  max-height: 380px;
   width: 100%;
 `;
 

@@ -19,7 +19,7 @@ const StyledLink = styled(Link)`
 export default function () {
   return (
     <Copyright>
-      <StyledLink to="/">
+      <StyledLink to="">
 © 2018 Twitter
       </StyledLink>
       <StyledLink to="/about">

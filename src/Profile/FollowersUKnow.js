@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import users from '../users';
 import followersIcon from './img/followers-icon.svg';
 
 const followers = [
@@ -52,19 +53,26 @@ const Follower = styled.img`
   cursor: pointer;
 `;
 
-function FollowersYouKnow() {
+function FollowersYouKnow({ currentUser }) {
   return (
     <div>
       <StyledFollowersUKnow>
         <Icon src={followersIcon} alt="Followers you know" />
-        <Link to="/EveryInteract/followers_you_follow">
-          <LinkText>
-6 Followers you know
-          </LinkText>
+        <Link to={`/${currentUser}/followers_you_follow}`}>
+          <LinkText>6 Followers you know</LinkText>
         </Link>
       </StyledFollowersUKnow>
       <Followers>
-        {followers.map(follower => <Follower src={follower.avatar} />)}
+        {users.slice(0, 6).map((user, index) => (
+          <Link
+            to={{
+              pathname: `/${user.username}`,
+              state: { user },
+            }}
+          >
+            <Follower src={followers[index].avatar} />
+          </Link>
+        ))}
       </Followers>
     </div>
   );

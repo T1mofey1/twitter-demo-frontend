@@ -52,20 +52,16 @@ const Picture = styled.img`
   margin-bottom: 3px;
 `;
 
-function Media() {
+function Media({ currentUser }) {
   return (
     <div>
       <StyledMedia>
         <Icon src={mediaIcon} alt="Media" />
-        <Link to="/EveryInteract/media">
-          <LinkText>
-522 Photos and videos
-          </LinkText>
+        <Link to={`/${currentUser}/media`}>
+          <LinkText>522 Photos and videos</LinkText>
         </Link>
       </StyledMedia>
-      <Pictures>
-        {mediaFiles.map(media => <Picture src={media.picture} />)}
-      </Pictures>
+      <Pictures>{mediaFiles.map(media => <Picture src={media.picture} />)}</Pictures>
     </div>
   );
 }

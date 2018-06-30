@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Button from './ui/Button';
 import MoreOptions from './ui/MoreOptions';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   text-decoration: none;
+  border-bottom: 4px solid transparent;
+  &:hover {
+    border-bottom: 4px solid #1da1f2;
+  }
+  &.active {
+    border-bottom: 4px solid #1c94e0;
+    color: #1da1f2;
+  }
 `;
 
 const ProfieNav = styled.div`
@@ -19,16 +27,11 @@ const StatisticsNav = styled.div`
 `;
 
 const StatisticsBtnWrap = styled.div`
-  border-bottom: ${({ active }) => (active === true ? '4px solid #1DA1F2' : 'none')};
   cursor: pointer;
   line-height: 21px;
   font-size: 12px;
   text-align: center;
   padding: 6px 15px 7px;
-
-  &:hover {
-    border-bottom: 4px solid #1da1f2;
-  }
 `;
 
 const Text = styled.div`
@@ -49,15 +52,11 @@ const Quanity = styled.div`
   }
 `;
 
-function StatisticsBtn({ active, children, quanity }) {
+function StatisticsBtn({ children, quanity }) {
   return (
-    <StatisticsBtnWrap active={active}>
-      <Text active={active}>
-        {children}
-      </Text>
-      <Quanity active={active}>
-        {quanity}
-      </Quanity>
+    <StatisticsBtnWrap>
+      <Text>{children}</Text>
+      <Quanity>{quanity}</Quanity>
     </StatisticsBtnWrap>
   );
 }
@@ -73,45 +72,33 @@ const OptionsWrap = styled.div`
   margin-top: 11px;
 `;
 
-function Statistics() {
+function Statistics({ currentUser }) {
   return (
     <StatisticsNav>
       <div className="container">
         <div className="row">
           <div className="col-lg-offset-3 col-lg-4">
             <ProfieNav>
-              <StyledLink to="/EveryInteract/">
-                <StatisticsBtn active quanity="8,058">
-                  Tweets
-                </StatisticsBtn>
+              <StyledLink exact to={`/${currentUser}`}>
+                <StatisticsBtn quanity="8,058">Tweets</StatisticsBtn>
               </StyledLink>
-              <StyledLink to="/EveryInteract/following">
-                <StatisticsBtn quanity="721">
-Following
-                </StatisticsBtn>
+              <StyledLink to={`/${currentUser}/following`}>
+                <StatisticsBtn quanity="721">Following</StatisticsBtn>
               </StyledLink>
-              <StyledLink to="/EveryInteract/followers">
-                <StatisticsBtn quanity="1,815">
-followers
-                </StatisticsBtn>
+              <StyledLink to={`/${currentUser}/followers`}>
+                <StatisticsBtn quanity="1,815">followers</StatisticsBtn>
               </StyledLink>
-              <StyledLink to="/EveryInteract/likes">
-                <StatisticsBtn quanity="460">
-likes
-                </StatisticsBtn>
+              <StyledLink to={`/${currentUser}/likes`}>
+                <StatisticsBtn quanity="460">likes</StatisticsBtn>
               </StyledLink>
-              <StyledLink to="/EveryInteract/lists">
-                <StatisticsBtn quanity="2">
-lists
-                </StatisticsBtn>
+              <StyledLink to={`/${currentUser}/lists`}>
+                <StatisticsBtn quanity="2">lists</StatisticsBtn>
               </StyledLink>
             </ProfieNav>
           </div>
           <div className="col-lg-offset-3 col-lg-2">
             <ButtonWrap>
-              <Button size="medium">
-Follow
-              </Button>
+              <Button size="medium">Follow</Button>
               <OptionsWrap>
                 <MoreOptions />
               </OptionsWrap>

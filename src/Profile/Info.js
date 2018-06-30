@@ -67,21 +67,18 @@ const ButtonWrap = styled.div`
 const Icon = styled.img`
   position: absolute;
   left: -25px;
+  top: 0px;
 `;
 
-function ProfileInfo() {
+function ProfileInfo({ user }) {
   return (
     <Info>
       <AvatarWrap>
         <Avatar size="large" />
       </AvatarWrap>
-      <ProfileName verified>
-Every Interaction
-      </ProfileName>
+      <ProfileName verified>{user.name}</ProfileName>
       <UserNameWrap>
-        <UserName to="/Everyinteraction">
-@EveryInteract
-        </UserName>
+        <UserName to={`/${user.name}`}>@{user.username}</UserName>
       </UserNameWrap>
       <ProfileDescription>
         UX Design studio focussed problem solving creativity. Design to us is how can we make things
