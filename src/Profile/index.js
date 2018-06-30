@@ -39,11 +39,11 @@ function ProfilePage({
           </div>
           <div className="col-lg-6">
             <Switch>
-              <Route path={`/${user}`} render={() => <Feed currentUser={user} />} />
               <Route path={`/${user}/following`} component={links} />
               <Route path={`/${user}/followers`} component={links} />
               <Route path={`/${user}/likes`} component={links} />
               <Route path={`/${user}/lists`} component={links} />
+              <Route path={`/${user}`} render={() => <Feed currentUser={user} />} />
             </Switch>
           </div>
           <div className="col-lg-3">

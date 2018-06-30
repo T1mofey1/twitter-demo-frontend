@@ -11,12 +11,8 @@ const WhereIam = styled.p`
 export default ({ match }) => (
   <div>
     <Helmet>
-      <title>
-        {match.url.slice(1)}
-      </title>
+      <title>{match.url.slice(1)}</title>
     </Helmet>
-    <WhereIam>
-      {match.url.slice(1)}
-    </WhereIam>
+    <WhereIam>{match.url.slice(1)}</WhereIam>
   </div>
 );

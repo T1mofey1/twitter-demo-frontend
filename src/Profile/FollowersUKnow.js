@@ -63,7 +63,7 @@ function FollowersYouKnow({ currentUser }) {
         </Link>
       </StyledFollowersUKnow>
       <Followers>
-        {users.slice(0, 6).map((user, index) => (
+        {users.slice(1, 7).map((user, index) => (
           <Link
             to={{
               pathname: `/${user.username}`,

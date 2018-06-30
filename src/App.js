@@ -7,6 +7,7 @@ import {
 import links from './links';
 import Header from './Header';
 import ProfilePage from './Profile';
+import users from './users';
 
 export default function () {
   return (
@@ -29,7 +30,15 @@ export default function () {
           <Route exact path="/ads" component={links} />
           <Route exact path="/search" component={links} />
           <Route path="/:user" component={ProfilePage} />
-          <Redirect from="/" to="/EveryInteract" />
+          <Redirect
+            from="/"
+            to={{
+              pathname: `/${users[0].username}`,
+              state: {
+                user: users[0],
+              },
+            }}
+          />
         </Switch>
       </div>
     </Router>

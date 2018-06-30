@@ -45,7 +45,7 @@ function Navigation() {
   return (
     <div>
       <Nav>
-        <StyledNavLink to="/">
+        <StyledNavLink exact to="/">
           <Icon src={homeIcon} />
           <Button>Home</Button>
         </StyledNavLink>

@@ -93,16 +93,10 @@ const Icon = styled.img`
 export default function () {
   return (
     <WhoToFollow>
-      <BlockTitle>
-Who to follow
-      </BlockTitle>
-      <RefreshBtn>
-Refresh
-      </RefreshBtn>
+      <BlockTitle>Who to follow</BlockTitle>
+      <RefreshBtn>Refresh</RefreshBtn>
       <Link to="/who_to_follow/suggestions">
-        <ViewAll>
-View all
-        </ViewAll>
+        <ViewAll>View all</ViewAll>
       </Link>
       {profiles.map(profile => (
         <SuggestProfile

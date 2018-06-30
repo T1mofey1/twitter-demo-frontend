@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import ProfileName from './Name';
 import Username from './UserName';
 import Button from '../ui/Button';
@@ -51,18 +52,19 @@ function SuggestProfie({
   return (
     <Profile>
       <Avatar src={avatar} />
-      <User>
-        <StyledName verified={verified}>
-          {name}
-        </StyledName>
-        <StyledUsername to={username}>
-          {username}
-        </StyledUsername>
-      </User>
+      <Link
+        to={{
+          pathname: `/${username}`,
+          state: { user: { username, name } },
+        }}
+      >
+        <User>
+          <StyledName verified={verified}>{name}</StyledName>
+          <StyledUsername to={username}>{username}</StyledUsername>
+        </User>
+      </Link>
       <ButtonWrap>
-        <Button size="extrasmall">
-Follow
-        </Button>
+        <Button size="extrasmall">Follow</Button>
       </ButtonWrap>
       <Delete src={deleteIcon} alt="delete" />
     </Profile>

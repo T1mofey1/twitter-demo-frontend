@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import processString from 'react-process-string';
 import formatDate from '../utills/formatDate';
 import Avatar from '../Profile/Avatar';
 import likeIcon from '../ui/icons/like-icon.svg';
