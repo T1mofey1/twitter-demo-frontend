@@ -55,7 +55,7 @@ const Text = styled.div`
   font-size: 25px;
 `;
 
-const Img = styled.img`
+const Image = styled.img`
   margin-top: 13px;
   width: 100%;
 `;
@@ -145,28 +145,35 @@ const Icon = styled.img`
 `;
 
 function Tweet({
-  pinned, name, username, date, text, img, comments, share, likes, liked,
+  pinned,
+  name,
+  username,
+  date,
+  text,
+  images,
+  comments,
+  share,
+  likes,
+  liked,
+  avatar,
 }) {
   return (
     <div>
       {pinned && <Pinned>Pinned Tweet</Pinned>}
       <Feed>
         <AvatarWrap>
-          <Avatar size="medium" />
+          <Avatar src={avatar} size="medium" />
         </AvatarWrap>
 
         <StyledTweet>
           <TweetHead>
             <Name>{name}</Name>
-            <UserName to="/Everyinteract">{username}</UserName>
-            <PostDate>
-              •
-              {formatDate(date)}
-            </PostDate>
+            <UserName to="/Everyinteract">@{username}</UserName>
+            <PostDate>• {formatDate(+new Date(date))}</PostDate>
           </TweetHead>
           <Content>
-            <Text>{text}</Text>
-            {img ? <Img src={img} /> : null}
+            <Text dangerouslySetInnerHTML={{ __html: text }} />
+            {images ? images.map(image => <Image src={image.url} />) : null}
           </Content>
           <Activity>
             <div className="row">

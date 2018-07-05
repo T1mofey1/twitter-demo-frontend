@@ -14,10 +14,8 @@ const StyledAvatar = styled.img`
   border-radius: 100px;
 `;
 
-function Avatar({ size }) {
-  return (
-    <StyledAvatar size={size} src={`${process.env.PUBLIC_URL}img/profileAvatar.png`} alt="Avatar" />
-  );
+function Avatar({ size, src }) {
+  return <StyledAvatar size={size} src={src} alt="Avatar" />;
 }
 
 export default Avatar;

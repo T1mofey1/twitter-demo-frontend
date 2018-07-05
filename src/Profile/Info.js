@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import format from 'date-fns/format';
 import Button from '../ui/Button';
 import Avatar from './Avatar';
 import ProfileName from './Name';
@@ -70,20 +71,19 @@ const Icon = styled.img`
   top: 0px;
 `;
 
-function ProfileInfo({ user }) {
+function ProfileInfo({
+  name, username, avatar, description, joined,
+}) {
   return (
     <Info>
       <AvatarWrap>
-        <Avatar size="large" />
+        <Avatar src={avatar} size="large" />
       </AvatarWrap>
-      <ProfileName verified>{user.name}</ProfileName>
+      <ProfileName verified>{name}</ProfileName>
       <UserNameWrap>
-        <UserName to={`/${user.name}`}>@{user.username}</UserName>
+        <UserName to={`/${username}`}>@{username}</UserName>
       </UserNameWrap>
-      <ProfileDescription>
-        UX Design studio focussed problem solving creativity. Design to us is how can we make things
-        *work* amazing.
-      </ProfileDescription>
+      <ProfileDescription dangerouslySetInnerHTML={{ __html: description }} />
       <UserLocation>
         <Icon src={locationIcon} alt="location" />
         London, UK
@@ -94,7 +94,7 @@ function ProfileInfo({ user }) {
       </UserLink>
       <RegistrationDate>
         <Icon src={joinedIcon} alt="Joined" />
-        Joined May 2008
+        Joined {format(joined, 'MMMM YYYY')}
       </RegistrationDate>
       <ButtonWrap>
         <Button color="primary" size="large">

@@ -72,7 +72,9 @@ const OptionsWrap = styled.div`
   margin-top: 11px;
 `;
 
-function Statistics({ currentUser }) {
+function Statistics({
+  currentUser, followers, following, tweets,
+}) {
   return (
     <StatisticsNav>
       <div className="container">
@@ -80,13 +82,13 @@ function Statistics({ currentUser }) {
           <div className="col-lg-offset-3 col-lg-4">
             <ProfieNav>
               <StyledLink exact to={`/${currentUser}`}>
-                <StatisticsBtn quanity="8,058">Tweets</StatisticsBtn>
+                <StatisticsBtn quanity={tweets || 0}>Tweets</StatisticsBtn>
               </StyledLink>
               <StyledLink to={`/${currentUser}/following`}>
-                <StatisticsBtn quanity="721">Following</StatisticsBtn>
+                <StatisticsBtn quanity={following || 0}>Following</StatisticsBtn>
               </StyledLink>
               <StyledLink to={`/${currentUser}/followers`}>
-                <StatisticsBtn quanity="1,815">followers</StatisticsBtn>
+                <StatisticsBtn quanity={followers || 0}>followers</StatisticsBtn>
               </StyledLink>
               <StyledLink to={`/${currentUser}/likes`}>
                 <StatisticsBtn quanity="460">likes</StatisticsBtn>

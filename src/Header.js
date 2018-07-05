@@ -54,7 +54,7 @@ function Header() {
             <Wrap>
               <Search />
               <AvatarWrap>
-                <Avatar size="small" />
+                <Avatar size="small" src={`${process.env.PUBLIC_URL}img/profileAvatar.png`} />
               </AvatarWrap>
               <Button color="primary" size="small">
                 Tweet

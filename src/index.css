@@ -8,3 +8,6 @@ a {
   text-decoration: none;
   color: #1da1f2;
 }
+p {
+  margin: 0;
+}
