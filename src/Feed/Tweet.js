@@ -13,6 +13,9 @@ const Feed = styled.div`
   margin-top: 6px;
   border-bottom: 1px solid #e1e8ed;
   position: relative;
+  p {
+    margin: 0;
+  }
 `;
 
 const AvatarWrap = styled.div`

@@ -20,23 +20,19 @@ export default class ProfilePage extends Component {
 
   componentDidMount() {
     const hostname = 'https://twitter-demo.erodionov.ru';
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
     const secretCode = process.env.REACT_APP_SECRET_CODE;
 
-    fetch(`${hostname}/api/v1/accounts/1?access_token=${secretCode}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject();
-      })
+    fetch(`${hostname}/api/v1/accounts/${id}?access_token=${secretCode}`)
+      .then(response => response.json())
       .then(userData => this.setState({ userData }));
+
     fetch(`${hostname}/api/v1/timelines/home/?access_token=${secretCode}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject();
-      })
+      .then(response => response.json())
       .then(tweetsData => this.setState({ tweetsData }));
   }
 
@@ -46,14 +42,14 @@ export default class ProfilePage extends Component {
       <div>
         <Helmet>
           <title>
-            {userData.display_name} (@
-            {userData.username}
+            {userData.display_name ? userData.display_name : ''} (@
+            {userData.username ? userData.username : ''}
             ) | Twitter
           </title>
         </Helmet>
         <ProfileImage header={userData.header} />
         <Statistics
-          currentUser={userData.username}
+          currentUser={userData.id}
           followers={userData.followers_count}
           following={userData.following_count}
           tweets={userData.statuses_count}
@@ -73,18 +69,14 @@ export default class ProfilePage extends Component {
             </div>
             <div className="col-lg-6">
               <Switch>
-                <Route path={`/${userData.username}/following`} component={links} />
-                <Route path={`/${userData.username}/followers`} component={links} />
-                <Route path={`/${userData.username}/likes`} component={links} />
-                <Route path={`/${userData.username}/lists`} component={links} />
+                <Route path={`/${userData.id}/following`} component={links} />
+                <Route path={`/${userData.id}/followers`} component={links} />
+                <Route path={`/${userData.id}/likes`} component={links} />
+                <Route path={`/${userData.id}/lists`} component={links} />
                 <Route
-                  path={`/${userData.username}`}
+                  path={`/${userData.id}`}
                   render={() => (
-                    <Feed
-                      tweets={tweetsData}
-                      avatar={userData.avatar}
-                      currentUser={userData.username}
-                    />
+                    <Feed tweets={tweetsData} avatar={userData.avatar} currentUser={userData.id} />
                   )}
                 />
               </Switch>

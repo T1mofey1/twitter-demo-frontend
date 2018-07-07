@@ -28,8 +28,8 @@ export default function () {
           <Route exact path="/cookies" component={links} />
           <Route exact path="/ads" component={links} />
           <Route exact path="/search" component={links} />
-          <Route path="/:user" component={ProfilePage} />
-          <Redirect from="/" to="/admin" />
+          <Route path="/:id" component={ProfilePage} />
+          <Redirect from="/" to="/1" />
         </Switch>
       </div>
     </Router>

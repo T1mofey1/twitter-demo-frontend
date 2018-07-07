@@ -18,7 +18,6 @@ export default function ({ currentUser, tweets, avatar }) {
           path={`/${currentUser}`}
           render={() => <TweetList tweets={tweets} avatar={avatar} />}
         />
-        <Route exact component={TweetList} />
         <Route exact path={`/${currentUser}/with_replies`} component={Links} />
         <Route exact path={`/${currentUser}/media`} component={Links} />
       </Switch>
