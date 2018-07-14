@@ -1,27 +1,30 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import users from '../users';
 import followersIcon from './img/followers-icon.svg';
 
+const publicPath = process.env.PUBLIC_URL || '';
+
 const followers = [
   {
-    avatar: `${process.env.PUBLIC_URL}img/follower1.png`,
+    avatar: `${publicPath}img/follower1.png`,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/follower2.png`,
+    avatar: `${publicPath}img/follower2.png`,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/follower3.png`,
+    avatar: `${publicPath}img/follower3.png`,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/follower4.png`,
+    avatar: `${publicPath}img/follower4.png`,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/follower5.png`,
+    avatar: `${publicPath}img/follower5.png`,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/follower6.png`,
+    avatar: `${publicPath}img/follower6.png`,
   },
 ];
 
@@ -53,29 +56,31 @@ const Follower = styled.img`
   cursor: pointer;
 `;
 
-function FollowersYouKnow({ currentUser }) {
-  return (
-    <div>
-      <StyledFollowersUKnow>
-        <Icon src={followersIcon} alt="Followers you know" />
-        <Link to={`/${currentUser}/followers_you_follow}`}>
-          <LinkText>6 Followers you know</LinkText>
+type FollowersYouKnowProps = {
+  currentUser: string,
+};
+
+const FollowersYouKnow = ({ currentUser }: FollowersYouKnowProps) => (
+  <div>
+    <StyledFollowersUKnow>
+      <Icon src={followersIcon} alt="Followers you know" />
+      <Link to={`/${currentUser}/followers_you_follow}`}>
+        <LinkText>6 Followers you know</LinkText>
+      </Link>
+    </StyledFollowersUKnow>
+    <Followers>
+      {users.slice(1, 7).map((user, index) => (
+        <Link
+          to={{
+            pathname: `/${user.username}`,
+            state: { user },
+          }}
+        >
+          <Follower src={followers[index].avatar} />
         </Link>
-      </StyledFollowersUKnow>
-      <Followers>
-        {users.slice(1, 7).map((user, index) => (
-          <Link
-            to={{
-              pathname: `/${user.username}`,
-              state: { user },
-            }}
-          >
-            <Follower src={followers[index].avatar} />
-          </Link>
-        ))}
-      </Followers>
-    </div>
-  );
-}
+      ))}
+    </Followers>
+  </div>
+);
 
 export default FollowersYouKnow;

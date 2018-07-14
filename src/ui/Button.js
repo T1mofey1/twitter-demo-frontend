@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -23,7 +24,13 @@ const StyledButton = styled.button`
     border-color: #009DE0;
 `;
 
-function Button({ size, color, children }) {
+type ButtonProps = {
+  size: string,
+  color: string,
+  children: string,
+};
+
+function Button({ size, color, children }: ButtonProps) {
   return (
     <StyledButton size={size} color={color}>
       {children}
