@@ -62,11 +62,13 @@ export default class ProfilePage extends Component<Props, State> {
 
     fetch(`${hostname}/api/v1/accounts/${id}?access_token=${secretCode}`)
       .then(response => response.json())
-      .then(userData => this.setState({ userData }));
+      .then(userData => this.setState({ userData }))
+      .catch(err => err);
 
     fetch(`${hostname}/api/v1/timelines/home/?access_token=${secretCode}`)
       .then(response => response.json())
-      .then(tweetsData => this.setState({ tweetsData }));
+      .then(tweetsData => this.setState({ tweetsData }))
+      .catch(err => err);
   }
 
   render() {
