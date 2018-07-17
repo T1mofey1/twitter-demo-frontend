@@ -15,11 +15,11 @@ const StyledAvatar = styled.img`
   border-radius: 100px;
 `;
 
-type AvatarProps = {
+type Props = {
   size: string,
   src: string,
 };
 
-const Avatar = ({ size, src }: AvatarProps) => <StyledAvatar size={size} src={src} alt="Avatar" />;
+const Avatar = ({ size, src }: Props) => <StyledAvatar size={size} src={src} alt="Avatar" />;
 
 export default Avatar;

@@ -30,13 +30,13 @@ function getCount(tweets) {
   return tweets;
 }
 
-type TrendProps = {
+type Props = {
   name: string,
   description: null | string,
   count: null | number,
 };
 
-const Trend = ({ name, description, count }: TrendProps) => (
+const Trend = ({ name, description, count }: Props) => (
   <Link to={`search?q="${name}"`}>
     <StyledTrends>
       <Name>{name}</Name>

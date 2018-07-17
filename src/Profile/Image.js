@@ -10,10 +10,10 @@ const ProfileImage = styled.img`
   object-fit: cover;
 `;
 
-type ImageProps = {
+type Props = {
   header: string,
 };
 
-const ImageProfile = ({ header }: ImageProps) => <ProfileImage src={header} />;
+const ImageProfile = ({ header }: Props) => <ProfileImage src={header} />;
 
 export default ImageProfile;

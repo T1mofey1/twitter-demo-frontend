@@ -22,15 +22,16 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${({ color }) => (color === 'primary' ? '#009DE0;' : '#E5F5FB;')}
     border-color: #009DE0;
+  }
 `;
 
-type ButtonProps = {
+type Props = {
   size: string,
   color: string,
   children: string,
 };
 
-function Button({ size, color, children }: ButtonProps) {
+function Button({ size, color, children }: Props) {
   return (
     <StyledButton size={size} color={color}>
       {children}

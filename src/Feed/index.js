@@ -10,13 +10,13 @@ const Feed = styled.div`
   background: white;
 `;
 
-type FeedProps = {
+type Props = {
   currentUser: string,
   tweets: [],
   avatar: string,
 };
 
-const Index = ({ currentUser, tweets, avatar }: FeedProps) => (
+const Index = ({ currentUser, tweets, avatar }: Props) => (
   <Feed>
     <Head currentUser={currentUser} />
     <Switch>

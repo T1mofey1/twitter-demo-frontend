@@ -2,12 +2,12 @@
 import React from 'react';
 import Tweet from './Tweet';
 
-type TweetsListProps = {
+type Props = {
   tweets: [],
   avatar: string,
 };
 
-const TweetsList = ({ tweets, avatar }: TweetsListProps) => (
+const TweetsList = ({ tweets, avatar }: Props) => (
   <div>
     {tweets.map(tweet => (
       <Tweet

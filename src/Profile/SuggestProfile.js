@@ -48,7 +48,7 @@ const Delete = styled.img`
   cursor: pointer;
 `;
 
-type SuggestProfieProps = {
+type Props = {
   avatar: string,
   name: string,
   verified: null | boolean,
@@ -57,7 +57,7 @@ type SuggestProfieProps = {
 
 const SuggestProfie = ({
   avatar, name, verified, username,
-}: SuggestProfieProps) => (
+}: Props) => (
   <Profile>
     <Avatar src={avatar} />
     <Link

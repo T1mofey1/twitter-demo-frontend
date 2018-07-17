@@ -56,11 +56,11 @@ const Follower = styled.img`
   cursor: pointer;
 `;
 
-type FollowersYouKnowProps = {
+type Props = {
   currentUser: string,
 };
 
-const FollowersYouKnow = ({ currentUser }: FollowersYouKnowProps) => (
+const FollowersYouKnow = ({ currentUser }: Props) => (
   <div>
     <StyledFollowersUKnow>
       <Icon src={followersIcon} alt="Followers you know" />

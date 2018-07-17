@@ -148,17 +148,17 @@ const Icon = styled.img`
   padding-right: 3px;
 `;
 
-type TweetProps = {
+type Props = {
   pinned: boolean,
   name: string,
   username: string,
   date: string,
   text: string,
   images: [],
-  comments: number | void,
-  share: number | void,
+  comments: number,
+  share: number,
   likes: boolean,
-  liked: number | void,
+  liked: number,
   avatar: string,
 };
 
@@ -174,7 +174,7 @@ const Tweet = ({
   likes,
   liked,
   avatar,
-}: TweetProps) => (
+}: Props) => (
   <div>
     {pinned && <Pinned>Pinned Tweet</Pinned>}
     <Feed>

@@ -31,11 +31,11 @@ const Text = styled.div`
   color: black;
 `;
 
-type HeadProps = {
+type Props = {
   currentUser: string,
 };
 
-const Head = ({ currentUser }: HeadProps) => (
+const Head = ({ currentUser }: Props) => (
   <FeedHead>
     <StyledLink exact to={`/${currentUser}`}>
       <Text>Tweets</Text>

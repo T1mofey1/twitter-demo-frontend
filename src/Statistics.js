@@ -8,8 +8,11 @@ import MoreOptions from './ui/MoreOptions';
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   border-bottom: 4px solid transparent;
+  transition: 0.5s;
+  color: #788a98;
   &:hover {
     border-bottom: 4px solid #1da1f2;
+    color: #1da1f2;
   }
   &.active {
     border-bottom: 4px solid #1c94e0;
@@ -46,10 +49,12 @@ const Quanity = styled.div`
   line-height: 21px;
   font-size: 18px;
   font-weight: bold;
-  color: ${({ active }) => (active === true ? '#1DA1F2;' : '#788a98;')};
-
+  color: inherit;
   &:hover {
     color: #1da1f2;
+  }
+  &.active {
+    color: blue;
   }
 `;
 
@@ -73,7 +78,7 @@ const OptionsWrap = styled.div`
   margin-top: 11px;
 `;
 
-type StatisticsProps = {
+type Props = {
   currentUser: string,
   followers: number | null,
   following: number | null,
@@ -82,7 +87,7 @@ type StatisticsProps = {
 
 const Statistics = ({
   currentUser, followers, following, tweets,
-}: StatisticsProps) => (
+}: Props) => (
   <StatisticsNav>
     <div className="container">
       <div className="row">

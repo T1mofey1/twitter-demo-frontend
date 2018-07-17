@@ -72,7 +72,7 @@ const Icon = styled.img`
   top: 0px;
 `;
 
-type ProfileInfoProps = {
+type Props = {
   name: string,
   username: string,
   avatar: string,
@@ -82,7 +82,7 @@ type ProfileInfoProps = {
 
 const ProfileInfo = ({
   name, username, avatar, description, joined,
-}: ProfileInfoProps) => (
+}: Props) => (
   <Info>
     <AvatarWrap>
       <Avatar src={avatar} size="large" />

@@ -9,13 +9,13 @@ const WhereIam = styled.p`
   text-align: center;
 `;
 
-type LinksProps = {
+type Props = {
   match: {
     url: string,
   },
 };
 
-const Links = ({ match }: LinksProps) => (
+const Links = ({ match }: Props) => (
   <div>
     <Helmet>
       <title>{match.url.slice(1)}</title>
