@@ -33,7 +33,8 @@ const StyledNavLink = styled(NavLink)`
   padding-bottom: 10px;
   border-bottom: 2px solid transparent;
   display: flex;
-  transition: 0.5s;
+  transition-property: color, border;
+  transition-duration: 0.3s;
   color: #14171a;
   &:hover {
     border-bottom: 2px solid #1c94e0;

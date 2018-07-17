@@ -8,7 +8,8 @@ import MoreOptions from './ui/MoreOptions';
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   border-bottom: 4px solid transparent;
-  transition: 0.5s;
+  transition-property: color, border;
+  transition-duration: 0.3s;
   color: #788a98;
   &:hover {
     border-bottom: 4px solid #1da1f2;
