@@ -1,6 +1,8 @@
+/* @flow */
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router-dom';
+import type { Match } from 'react-router-dom';
 import links from '../links';
 import ProfileImage from './Image';
 import Statistics from '../Statistics';
@@ -12,28 +14,61 @@ import WhoToFollow from './WhoToFollow';
 import TrendList from './TrendList';
 import Copyright from '../Additions';
 
-export default class ProfilePage extends Component {
+type Props = {
+  match: Match,
+};
+
+type State = {
+  userData: {
+    id: string,
+    header: string,
+    note: string,
+    following_count: number,
+    followers_count: number,
+    statuses_count: number,
+    avatar: string,
+    created_at: string,
+    display_name: string,
+    username: string,
+  },
+  tweetsData: [],
+};
+
+export default class ProfilePage extends Component<Props, State> {
   state = {
-    userData: { display_name: '', username: '' },
+    userData: {
+      display_name: '',
+      username: '',
+      header: '',
+      note: '',
+      following_count: 0,
+      followers_count: 0,
+      statuses_count: 0,
+      avatar: '',
+      id: '',
+      created_at: '',
+    },
     tweetsData: [],
   };
 
   componentDidMount() {
     const hostname = 'https://twitter-demo.erodionov.ru';
+    const secretCode = process.env.REACT_APP_SECRET_CODE || '';
     const {
       match: {
         params: { id },
       },
     } = this.props;
-    const secretCode = process.env.REACT_APP_SECRET_CODE;
 
     fetch(`${hostname}/api/v1/accounts/${id}?access_token=${secretCode}`)
       .then(response => response.json())
-      .then(userData => this.setState({ userData }));
+      .then(userData => this.setState({ userData }))
+      .catch(err => err);
 
     fetch(`${hostname}/api/v1/timelines/home/?access_token=${secretCode}`)
       .then(response => response.json())
-      .then(tweetsData => this.setState({ tweetsData }));
+      .then(tweetsData => this.setState({ tweetsData }))
+      .catch(err => err);
   }
 
   render() {
@@ -64,8 +99,8 @@ export default class ProfilePage extends Component {
                 description={userData.note}
                 joined={userData.created_at}
               />
-              <FollowersUKnow />
-              <Media />
+              <FollowersUKnow currentUser={userData.id} />
+              <Media currentUser={userData.id} />
             </div>
             <div className="col-lg-6">
               <Switch>

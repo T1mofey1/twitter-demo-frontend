@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -17,7 +18,7 @@ const Button = styled.button`
   font-weight: bold;
   font-size: 13px;
   line-height: 15px;
-  color: rgb(102, 117, 128);
+  color: inherit;
   position: relative;
   &:hover {
     color: #1da1f2;
@@ -32,8 +33,12 @@ const StyledNavLink = styled(NavLink)`
   padding-bottom: 10px;
   border-bottom: 2px solid transparent;
   display: flex;
+  transition-property: color, border;
+  transition-duration: 0.3s;
+  color: #14171a;
   &:hover {
     border-bottom: 2px solid #1c94e0;
+    color: #1da1f2;
   }
   &.active {
     border-bottom: 2px solid #1c94e0;

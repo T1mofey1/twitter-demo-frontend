@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -19,27 +20,13 @@ const StyledLink = styled(Link)`
 export default function () {
   return (
     <Copyright>
-      <StyledLink to="">
-© 2018 Twitter
-      </StyledLink>
-      <StyledLink to="/about">
-About
-      </StyledLink>
-      <StyledLink to="/help">
-Help Center
-      </StyledLink>
-      <StyledLink to="/terms">
-Terms
-      </StyledLink>
-      <StyledLink to="/privacy_policy">
-Privacy policy
-      </StyledLink>
-      <StyledLink to="/cookies">
-Cookies
-      </StyledLink>
-      <StyledLink to="/ads_info">
-Ads info
-      </StyledLink>
+      <StyledLink to="">© 2018 Twitter</StyledLink>
+      <StyledLink to="/about">About</StyledLink>
+      <StyledLink to="/help">Help Center</StyledLink>
+      <StyledLink to="/terms">Terms</StyledLink>
+      <StyledLink to="/privacy_policy">Privacy policy</StyledLink>
+      <StyledLink to="/cookies">Cookies</StyledLink>
+      <StyledLink to="/ads_info">Ads info</StyledLink>
     </Copyright>
   );
 }

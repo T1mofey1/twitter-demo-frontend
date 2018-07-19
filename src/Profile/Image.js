@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -9,8 +10,10 @@ const ProfileImage = styled.img`
   object-fit: cover;
 `;
 
-function ImageProfile({ header }) {
-  return <ProfileImage src={header} />;
-}
+type Props = {
+  header: string,
+};
+
+const ImageProfile = ({ header }: Props) => <ProfileImage src={header} />;
 
 export default ImageProfile;

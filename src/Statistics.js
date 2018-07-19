@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -7,8 +8,12 @@ import MoreOptions from './ui/MoreOptions';
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   border-bottom: 4px solid transparent;
+  transition-property: color, border;
+  transition-duration: 0.3s;
+  color: #788a98;
   &:hover {
     border-bottom: 4px solid #1da1f2;
+    color: #1da1f2;
   }
   &.active {
     border-bottom: 4px solid #1c94e0;
@@ -45,10 +50,12 @@ const Quanity = styled.div`
   line-height: 21px;
   font-size: 18px;
   font-weight: bold;
-  color: ${({ active }) => (active === true ? '#1DA1F2;' : '#788a98;')};
-
+  color: inherit;
   &:hover {
     color: #1da1f2;
+  }
+  &.active {
+    color: blue;
   }
 `;
 
@@ -72,44 +79,51 @@ const OptionsWrap = styled.div`
   margin-top: 11px;
 `;
 
-function Statistics({
+type Props = {
+  currentUser: string,
+  followers: number | null,
+  following: number | null,
+  tweets: number | null,
+};
+
+const Statistics = ({
   currentUser, followers, following, tweets,
-}) {
-  return (
-    <StatisticsNav>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-offset-3 col-lg-4">
-            <ProfieNav>
-              <StyledLink exact to={`/${currentUser}`}>
-                <StatisticsBtn quanity={tweets || 0}>Tweets</StatisticsBtn>
-              </StyledLink>
-              <StyledLink to={`/${currentUser}/following`}>
-                <StatisticsBtn quanity={following || 0}>Following</StatisticsBtn>
-              </StyledLink>
-              <StyledLink to={`/${currentUser}/followers`}>
-                <StatisticsBtn quanity={followers || 0}>followers</StatisticsBtn>
-              </StyledLink>
-              <StyledLink to={`/${currentUser}/likes`}>
-                <StatisticsBtn quanity="460">likes</StatisticsBtn>
-              </StyledLink>
-              <StyledLink to={`/${currentUser}/lists`}>
-                <StatisticsBtn quanity="2">lists</StatisticsBtn>
-              </StyledLink>
-            </ProfieNav>
-          </div>
-          <div className="col-lg-offset-3 col-lg-2">
-            <ButtonWrap>
-              <Button size="medium">Follow</Button>
-              <OptionsWrap>
-                <MoreOptions />
-              </OptionsWrap>
-            </ButtonWrap>
-          </div>
+}: Props) => (
+  <StatisticsNav>
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-offset-3 col-lg-4">
+          <ProfieNav>
+            <StyledLink exact to={`/${currentUser}`}>
+              <StatisticsBtn quanity={tweets || 0}>Tweets</StatisticsBtn>
+            </StyledLink>
+            <StyledLink to={`/${currentUser}/following`}>
+              <StatisticsBtn quanity={following || 0}>Following</StatisticsBtn>
+            </StyledLink>
+            <StyledLink to={`/${currentUser}/followers`}>
+              <StatisticsBtn quanity={followers || 0}>followers</StatisticsBtn>
+            </StyledLink>
+            <StyledLink to={`/${currentUser}/likes`}>
+              <StatisticsBtn quanity="460">likes</StatisticsBtn>
+            </StyledLink>
+            <StyledLink to={`/${currentUser}/lists`}>
+              <StatisticsBtn quanity="2">lists</StatisticsBtn>
+            </StyledLink>
+          </ProfieNav>
+        </div>
+        <div className="col-lg-offset-3 col-lg-2">
+          <ButtonWrap>
+            <Button size="medium" color="">
+              Follow
+            </Button>
+            <OptionsWrap>
+              <MoreOptions />
+            </OptionsWrap>
+          </ButtonWrap>
         </div>
       </div>
-    </StatisticsNav>
-  );
-}
+    </div>
+  </StatisticsNav>
+);
 
 export default Statistics;

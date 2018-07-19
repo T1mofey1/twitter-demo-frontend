@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -21,9 +22,16 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${({ color }) => (color === 'primary' ? '#009DE0;' : '#E5F5FB;')}
     border-color: #009DE0;
+  }
 `;
 
-function Button({ size, color, children }) {
+type Props = {
+  size: string,
+  color: string,
+  children: string,
+};
+
+function Button({ size, color, children }: Props) {
   return (
     <StyledButton size={size} color={color}>
       {children}

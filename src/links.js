@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
@@ -8,7 +9,13 @@ const WhereIam = styled.p`
   text-align: center;
 `;
 
-export default ({ match }) => (
+type Props = {
+  match: {
+    url: string,
+  },
+};
+
+const Links = ({ match }: Props) => (
   <div>
     <Helmet>
       <title>{match.url.slice(1)}</title>
@@ -16,3 +23,4 @@ export default ({ match }) => (
     <WhereIam>{match.url.slice(1)}</WhereIam>
   </div>
 );
+export default Links;

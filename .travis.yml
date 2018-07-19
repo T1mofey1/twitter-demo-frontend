@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "node"
+cache:
+  directories:
+    - "node_modules"
+script: yarn test
+before_deploy: yarn add now --no-save
+deploy:
+  - provider: script
+    script: now --public --token $NOW_TOKEN -e REACT_APP_ACCESS_TOKEN=$API_TOKEN
+    skip_cleanup: true
+    on:
+      master: true

@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import format from 'date-fns/format';
@@ -71,41 +72,47 @@ const Icon = styled.img`
   top: 0px;
 `;
 
-function ProfileInfo({
+type Props = {
+  name: string,
+  username: string,
+  avatar: string,
+  description: string,
+  joined: string,
+};
+
+const ProfileInfo = ({
   name, username, avatar, description, joined,
-}) {
-  return (
-    <Info>
-      <AvatarWrap>
-        <Avatar src={avatar} size="large" />
-      </AvatarWrap>
-      <ProfileName verified>{name}</ProfileName>
-      <UserNameWrap>
-        <UserName to={`/${username}`}>@{username}</UserName>
-      </UserNameWrap>
-      <ProfileDescription dangerouslySetInnerHTML={{ __html: description }} />
-      <UserLocation>
-        <Icon src={locationIcon} alt="location" />
-        London, UK
-      </UserLocation>
-      <UserLink href="https://www.everyinteraction.com/">
-        <Icon src={linkIcon} alt="Link" />
-        everyinteraction.com
-      </UserLink>
-      <RegistrationDate>
-        <Icon src={joinedIcon} alt="Joined" />
-        Joined {format(joined, 'MMMM YYYY')}
-      </RegistrationDate>
-      <ButtonWrap>
-        <Button color="primary" size="large">
-          Tweet to
-        </Button>
-        <Button color="primary" size="large">
-          Message
-        </Button>
-      </ButtonWrap>
-    </Info>
-  );
-}
+}: Props) => (
+  <Info>
+    <AvatarWrap>
+      <Avatar src={avatar} size="large" />
+    </AvatarWrap>
+    <ProfileName verified>{name}</ProfileName>
+    <UserNameWrap>
+      <UserName to={`/${username}`}>@{username}</UserName>
+    </UserNameWrap>
+    <ProfileDescription dangerouslySetInnerHTML={{ __html: description }} />
+    <UserLocation>
+      <Icon src={locationIcon} alt="location" />
+      London, UK
+    </UserLocation>
+    <UserLink href="https://www.everyinteraction.com/">
+      <Icon src={linkIcon} alt="Link" />
+      everyinteraction.com
+    </UserLink>
+    <RegistrationDate>
+      <Icon src={joinedIcon} alt="Joined" />
+      Joined {format(joined, 'MMMM YYYY')}
+    </RegistrationDate>
+    <ButtonWrap>
+      <Button color="primary" size="large">
+        Tweet to
+      </Button>
+      <Button color="primary" size="large">
+        Message
+      </Button>
+    </ButtonWrap>
+  </Info>
+);
 
 export default ProfileInfo;

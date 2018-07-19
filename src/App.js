@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import 'flexboxgrid2';
 import 'normalize.css';

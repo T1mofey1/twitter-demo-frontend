@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -30,18 +31,22 @@ const Text = styled.div`
   color: black;
 `;
 
-export default function ({ currentUser }) {
-  return (
-    <FeedHead>
-      <StyledLink exact to={`/${currentUser}`}>
-        <Text>Tweets</Text>
-      </StyledLink>
-      <StyledLink exact to={`/${currentUser}/with_replies`}>
-        <Text>Tweets & replies</Text>
-      </StyledLink>
-      <StyledLink exact to={`/${currentUser}/media`}>
-        <Text>Media</Text>
-      </StyledLink>
-    </FeedHead>
-  );
-}
+type Props = {
+  currentUser: string,
+};
+
+const Head = ({ currentUser }: Props) => (
+  <FeedHead>
+    <StyledLink exact to={`/${currentUser}`}>
+      <Text>Tweets</Text>
+    </StyledLink>
+    <StyledLink exact to={`/${currentUser}/with_replies`}>
+      <Text>Tweets & replies</Text>
+    </StyledLink>
+    <StyledLink exact to={`/${currentUser}/media`}>
+      <Text>Media</Text>
+    </StyledLink>
+  </FeedHead>
+);
+
+export default Head;
