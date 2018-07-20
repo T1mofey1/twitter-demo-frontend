@@ -1,3 +1,4 @@
+/* @flow */
 import styled from 'styled-components';
 import tickIcon from './img/tick-icon.svg';
 

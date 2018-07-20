@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import Trend from './Trend';
@@ -5,25 +6,32 @@ import Trend from './Trend';
 const trends = [
   {
     name: '#BringYourDogToWorkDay',
+    description: '',
+    count: 0,
   },
   {
     name: '#FridayFeeling',
+    description: '',
     count: 12121,
   },
   {
     name: '#BrexitAnniversary',
     description: 'It’s one year since the UK voted to leave the European Union',
+    count: 0,
   },
   {
     name: 'HMS Queen Elizabeth',
+    description: '',
     count: 1036,
   },
   {
     name: 'Joe Budden',
+    description: '',
     count: 1036,
   },
   {
     name: 'Trident',
+    description: '',
     count: 6136,
   },
 ];
@@ -67,12 +75,8 @@ const Change = styled.button`
 export default function () {
   return (
     <TrendsWrap>
-      <BlockTitle>
-United Kingdom Trends
-      </BlockTitle>
-      <Change>
-Change
-      </Change>
+      <BlockTitle>United Kingdom Trends</BlockTitle>
+      <Change>Change</Change>
       {trends.map(trend => (
         <Trend name={trend.name} count={trend.count} description={trend.description} />
       ))}

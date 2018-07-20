@@ -1,26 +1,29 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import mediaIcon from './img/media-icon.svg';
 
+const publicPath = process.env.PUBLIC_URL || '';
+
 const mediaFiles = [
   {
-    picture: `${process.env.PUBLIC_URL}img/media1.png`,
+    picture: `${publicPath}img/media1.png`,
   },
   {
-    picture: `${process.env.PUBLIC_URL}img/media2.png`,
+    picture: `${publicPath}img/media2.png`,
   },
   {
-    picture: `${process.env.PUBLIC_URL}img/media3.png`,
+    picture: `${publicPath}img/media3.png`,
   },
   {
-    picture: `${process.env.PUBLIC_URL}img/media4.png`,
+    picture: `${publicPath}img/media4.png`,
   },
   {
-    picture: `${process.env.PUBLIC_URL}img/media5.png`,
+    picture: `${publicPath}img/media5.png`,
   },
   {
-    picture: `${process.env.PUBLIC_URL}img/media6.png`,
+    picture: `${publicPath}img/media6.png`,
   },
 ];
 
@@ -52,18 +55,20 @@ const Picture = styled.img`
   margin-bottom: 3px;
 `;
 
-function Media({ currentUser }) {
-  return (
-    <div>
-      <StyledMedia>
-        <Icon src={mediaIcon} alt="Media" />
-        <Link to={`/${currentUser}/media`}>
-          <LinkText>522 Photos and videos</LinkText>
-        </Link>
-      </StyledMedia>
-      <Pictures>{mediaFiles.map(media => <Picture src={media.picture} />)}</Pictures>
-    </div>
-  );
-}
+type MediaProps = {
+  currentUser: string,
+};
+
+const Media = ({ currentUser }: MediaProps) => (
+  <div>
+    <StyledMedia>
+      <Icon src={mediaIcon} alt="Media" />
+      <Link to={`/${currentUser}/media`}>
+        <LinkText>522 Photos and videos</LinkText>
+      </Link>
+    </StyledMedia>
+    <Pictures>{mediaFiles.map(media => <Picture src={media.picture} />)}</Pictures>
+  </div>
+);
 
 export default Media;

@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,10 +15,11 @@ const StyledAvatar = styled.img`
   border-radius: 100px;
 `;
 
-function Avatar({ size }) {
-  return (
-    <StyledAvatar size={size} src={`${process.env.PUBLIC_URL}img/profileAvatar.png`} alt="Avatar" />
-  );
-}
+type Props = {
+  size: string,
+  src: string,
+};
+
+const Avatar = ({ size, src }: Props) => <StyledAvatar size={size} src={src} alt="Avatar" />;
 
 export default Avatar;

@@ -1,24 +1,29 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import SuggestProfile from './SuggestProfile';
 import peopleIcon from './img/people-icon.svg';
 
+const publicPath = process.env.PUBLIC_URL || '';
 const profiles = [
   {
-    avatar: `${process.env.PUBLIC_URL}img/avatar1.png`,
+    avatar: `${publicPath}img/avatar1.png`,
     name: 'AppleInsider',
     username: 'appleinsider',
+    verified: false,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/avatar2.png`,
+    avatar: `${publicPath}img/avatar2.png`,
     name: 'AppleInsider',
     username: 'appleinsider',
+    verified: false,
   },
   {
-    avatar: `${process.env.PUBLIC_URL}img/avatar3.png`,
+    avatar: `${publicPath}img/avatar3.png`,
     name: 'AppleInsider',
     username: 'appleinsider',
+    verified: false,
   },
 ];
 

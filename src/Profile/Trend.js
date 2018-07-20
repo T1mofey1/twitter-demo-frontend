@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -29,28 +30,20 @@ function getCount(tweets) {
   return tweets;
 }
 
-function Trend({ name, description, count }) {
-  return (
-    <Link to={`search?q="${name}"`}>
-      <StyledTrends>
-        <Name>
-          {name}
-        </Name>
-        {description ? (
-          <Description>
-            {description}
-          </Description>
-        ) : null}
-        {count ? (
-          <Count>
-            {getCount(count)}
-            {' '}
-Tweets
-          </Count>
-        ) : null}
-      </StyledTrends>
-    </Link>
-  );
-}
+type Props = {
+  name: string,
+  description: null | string,
+  count: null | number,
+};
+
+const Trend = ({ name, description, count }: Props) => (
+  <Link to={`search?q="${name}"`}>
+    <StyledTrends>
+      <Name>{name}</Name>
+      {description ? <Description>{description}</Description> : null}
+      {count ? <Count>{getCount(count)} Tweets</Count> : null}
+    </StyledTrends>
+  </Link>
+);
 
 export default Trend;

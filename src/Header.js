@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import Navigation from './ui/Navigation';
@@ -35,6 +36,8 @@ const Wrap = styled.div`
   margin-top: 6px;
 `;
 
+const publicPath = process.env.PUBLIC_URL || '';
+
 function Header() {
   return (
     <StyledHeader>
@@ -54,7 +57,7 @@ function Header() {
             <Wrap>
               <Search />
               <AvatarWrap>
-                <Avatar size="small" />
+                <Avatar size="small" src={`${publicPath}img/profileAvatar.png`} />
               </AvatarWrap>
               <Button color="primary" size="small">
                 Tweet

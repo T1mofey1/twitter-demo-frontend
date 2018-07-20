@@ -1,5 +1,7 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
+import format from 'date-fns/format';
 import Button from '../ui/Button';
 import Avatar from './Avatar';
 import ProfileName from './Name';
@@ -70,42 +72,47 @@ const Icon = styled.img`
   top: 0px;
 `;
 
-function ProfileInfo({ user }) {
-  return (
-    <Info>
-      <AvatarWrap>
-        <Avatar size="large" />
-      </AvatarWrap>
-      <ProfileName verified>{user.name}</ProfileName>
-      <UserNameWrap>
-        <UserName to={`/${user.name}`}>@{user.username}</UserName>
-      </UserNameWrap>
-      <ProfileDescription>
-        UX Design studio focussed problem solving creativity. Design to us is how can we make things
-        *work* amazing.
-      </ProfileDescription>
-      <UserLocation>
-        <Icon src={locationIcon} alt="location" />
-        London, UK
-      </UserLocation>
-      <UserLink href="https://www.everyinteraction.com/">
-        <Icon src={linkIcon} alt="Link" />
-        everyinteraction.com
-      </UserLink>
-      <RegistrationDate>
-        <Icon src={joinedIcon} alt="Joined" />
-        Joined May 2008
-      </RegistrationDate>
-      <ButtonWrap>
-        <Button color="primary" size="large">
-          Tweet to
-        </Button>
-        <Button color="primary" size="large">
-          Message
-        </Button>
-      </ButtonWrap>
-    </Info>
-  );
-}
+type Props = {
+  name: string,
+  username: string,
+  avatar: string,
+  description: string,
+  joined: string,
+};
+
+const ProfileInfo = ({
+  name, username, avatar, description, joined,
+}: Props) => (
+  <Info>
+    <AvatarWrap>
+      <Avatar src={avatar} size="large" />
+    </AvatarWrap>
+    <ProfileName verified>{name}</ProfileName>
+    <UserNameWrap>
+      <UserName to={`/${username}`}>@{username}</UserName>
+    </UserNameWrap>
+    <ProfileDescription dangerouslySetInnerHTML={{ __html: description }} />
+    <UserLocation>
+      <Icon src={locationIcon} alt="location" />
+      London, UK
+    </UserLocation>
+    <UserLink href="https://www.everyinteraction.com/">
+      <Icon src={linkIcon} alt="Link" />
+      everyinteraction.com
+    </UserLink>
+    <RegistrationDate>
+      <Icon src={joinedIcon} alt="Joined" />
+      Joined {format(joined, 'MMMM YYYY')}
+    </RegistrationDate>
+    <ButtonWrap>
+      <Button color="primary" size="large">
+        Tweet to
+      </Button>
+      <Button color="primary" size="large">
+        Message
+      </Button>
+    </ButtonWrap>
+  </Info>
+);
 
 export default ProfileInfo;

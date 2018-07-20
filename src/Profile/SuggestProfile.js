@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -46,29 +47,37 @@ const Delete = styled.img`
   top: 0px;
   cursor: pointer;
 `;
-function SuggestProfie({
+
+type Props = {
+  avatar: string,
+  name: string,
+  verified: null | boolean,
+  username: string,
+};
+
+const SuggestProfie = ({
   avatar, name, verified, username,
-}) {
-  return (
-    <Profile>
-      <Avatar src={avatar} />
-      <Link
-        to={{
-          pathname: `/${username}`,
-          state: { user: { username, name } },
-        }}
-      >
-        <User>
-          <StyledName verified={verified}>{name}</StyledName>
-          <StyledUsername to={username}>{username}</StyledUsername>
-        </User>
-      </Link>
-      <ButtonWrap>
-        <Button size="extrasmall">Follow</Button>
-      </ButtonWrap>
-      <Delete src={deleteIcon} alt="delete" />
-    </Profile>
-  );
-}
+}: Props) => (
+  <Profile>
+    <Avatar src={avatar} />
+    <Link
+      to={{
+        pathname: `/${username}`,
+        state: { user: { username, name } },
+      }}
+    >
+      <User>
+        <StyledName verified={verified}>{name}</StyledName>
+        <StyledUsername to={username}>{username}</StyledUsername>
+      </User>
+    </Link>
+    <ButtonWrap>
+      <Button size="extrasmall" color="">
+        Follow
+      </Button>
+    </ButtonWrap>
+    <Delete src={deleteIcon} alt="delete" />
+  </Profile>
+);
 
 export default SuggestProfie;

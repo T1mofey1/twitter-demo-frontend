@@ -1,13 +1,19 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 
 const ProfileImage = styled.img`
-  max-height: 380px;
+  display: block;
   width: 100%;
+  max-height: 380px;
+  margin: 0 auto;
+  object-fit: cover;
 `;
 
-function ImageProfile() {
-  return <ProfileImage src={`${process.env.PUBLIC_URL}img/profileImage.jpg`} />;
-}
+type Props = {
+  header: string,
+};
+
+const ImageProfile = ({ header }: Props) => <ProfileImage src={header} />;
 
 export default ImageProfile;
