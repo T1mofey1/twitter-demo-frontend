@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const StyledTrends = styled.div`
   background: #fff;
@@ -21,28 +22,28 @@ const Count = styled.span`
   color: #657786;
 `;
 
-export default class Trend extends Component {
-  getCount(tweets) {
-    if (tweets > 9999) {
-      const count = (tweets / 1000).toFixed(1);
-      return `${count}K`;
-    }
-    return tweets;
+function getCount(tweets) {
+  if (tweets > 9999) {
+    const count = (tweets / 1000).toFixed(1);
+    return `${count}K`;
   }
-
-  render() {
-    return (
-      <Link to={`search?q="${this.props.name}"`}>
-        <StyledTrends>
-          <Name>{this.props.name}</Name>
-          {this.props.description ? (
-            <Description>{this.props.description}</Description>
-          ) : null}
-          {this.props.count ? (
-            <Count>{this.getCount(this.props.count)} Tweets</Count>
-          ) : null}
-        </StyledTrends>
-      </Link>
-    );
-  }
+  return tweets;
 }
+
+type Props = {
+  name: string,
+  description: null | string,
+  count: null | number,
+};
+
+const Trend = ({ name, description, count }: Props) => (
+  <Link to={`search?q="${name}"`}>
+    <StyledTrends>
+      <Name>{name}</Name>
+      {description ? <Description>{description}</Description> : null}
+      {count ? <Count>{getCount(count)} Tweets</Count> : null}
+    </StyledTrends>
+  </Link>
+);
+
+export default Trend;

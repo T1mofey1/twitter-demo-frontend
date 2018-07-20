@@ -1,7 +1,32 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import followersIcon from "./img/followers-icon.svg";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import users from '../users';
+import followersIcon from './img/followers-icon.svg';
+
+const publicPath = process.env.PUBLIC_URL || '';
+
+const followers = [
+  {
+    avatar: `${publicPath}img/follower1.png`,
+  },
+  {
+    avatar: `${publicPath}img/follower2.png`,
+  },
+  {
+    avatar: `${publicPath}img/follower3.png`,
+  },
+  {
+    avatar: `${publicPath}img/follower4.png`,
+  },
+  {
+    avatar: `${publicPath}img/follower5.png`,
+  },
+  {
+    avatar: `${publicPath}img/follower6.png`,
+  },
+];
 
 const StyledFollowersUKnow = styled.div`
   position: relative;
@@ -28,57 +53,34 @@ const Follower = styled.img`
   height: 48px;
   margin-right: 5px;
   margin-bottom: 5px;
+  cursor: pointer;
 `;
 
-function FollowersYouKnow(props) {
-  return (
-    <div>
-      <StyledFollowersUKnow>
-        <Icon src={followersIcon} alt="Followers you know" />
-        <Link to="/EveryInteract/followers_you_follow">
-          <LinkText>6 Followers you know</LinkText>
+type Props = {
+  currentUser: string,
+};
+
+const FollowersYouKnow = ({ currentUser }: Props) => (
+  <div>
+    <StyledFollowersUKnow>
+      <Icon src={followersIcon} alt="Followers you know" />
+      <Link to={`/${currentUser}/followers_you_follow}`}>
+        <LinkText>6 Followers you know</LinkText>
+      </Link>
+    </StyledFollowersUKnow>
+    <Followers>
+      {users.slice(1, 7).map((user, index) => (
+        <Link
+          to={{
+            pathname: `/${user.username}`,
+            state: { user },
+          }}
+        >
+          <Follower src={followers[index].avatar} />
         </Link>
-      </StyledFollowersUKnow>
-      <Followers>
-        <Link to="/follower1">
-          <Follower
-            src={process.env.PUBLIC_URL + "/img/follower1.png"}
-            alt="Follower 1"
-          />
-        </Link>
-        <Link to="/follower2">
-          <Follower
-            src={process.env.PUBLIC_URL + "/img/follower2.png"}
-            alt="Follower 2"
-          />
-        </Link>
-        <Link to="/follower3">
-          <Follower
-            src={process.env.PUBLIC_URL + "img/follower3.png"}
-            alt="Follower 3"
-          />
-        </Link>
-        <Link to="follower4">
-          <Follower
-            src={process.env.PUBLIC_URL + "img/follower4.png"}
-            alt="Follower 4"
-          />
-        </Link>
-        <Link to="/follower5">
-          <Follower
-            src={process.env.PUBLIC_URL + "img/follower5.png"}
-            alt="Follower 5"
-          />
-        </Link>
-        <Link to="/follower6">
-          <Follower
-            src={process.env.PUBLIC_URL + "img/follower6.png"}
-            alt="Follower 6"
-          />
-        </Link>
-      </Followers>
-    </div>
-  );
-}
+      ))}
+    </Followers>
+  </div>
+);
 
 export default FollowersYouKnow;

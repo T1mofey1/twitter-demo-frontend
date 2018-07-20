@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import more from "./icons/more.svg";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import more from './icons/more.svg';
 
 const OptionsButton = styled.img`
   width: 4px;

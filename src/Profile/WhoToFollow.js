@@ -1,8 +1,31 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import SuggestProfile from "./SuggestProfile";
-import peopleIcon from "./img/people-icon.svg";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import SuggestProfile from './SuggestProfile';
+import peopleIcon from './img/people-icon.svg';
+
+const publicPath = process.env.PUBLIC_URL || '';
+const profiles = [
+  {
+    avatar: `${publicPath}img/avatar1.png`,
+    name: 'AppleInsider',
+    username: 'appleinsider',
+    verified: false,
+  },
+  {
+    avatar: `${publicPath}img/avatar2.png`,
+    name: 'AppleInsider',
+    username: 'appleinsider',
+    verified: false,
+  },
+  {
+    avatar: `${publicPath}img/avatar3.png`,
+    name: 'AppleInsider',
+    username: 'appleinsider',
+    verified: false,
+  },
+];
 
 const WhoToFollow = styled.div`
   margin-top: 6px;
@@ -28,7 +51,7 @@ const RefreshBtn = styled.button`
   color: #1da1f2;
   &:before {
     cursor: default;
-    content: "";
+    content: '';
     position: absolute;
     width: 3px;
     height: 3px;
@@ -45,7 +68,7 @@ const ViewAll = styled.span`
 
   &:before {
     cursor: default;
-    content: "";
+    content: '';
     position: absolute;
     width: 3px;
     height: 3px;
@@ -72,32 +95,26 @@ const Icon = styled.img`
   left: -20px;
 `;
 
-export default function(props) {
+export default function () {
   return (
     <WhoToFollow>
       <BlockTitle>Who to follow</BlockTitle>
       <RefreshBtn>Refresh</RefreshBtn>
-      <Link to="">
+      <Link to="/who_to_follow/suggestions">
         <ViewAll>View all</ViewAll>
       </Link>
-      <SuggestProfile
-        avatar="avatar1"
-        name="AppleInsider"
-        username="@appleinsider"
-      />
-      <SuggestProfile
-        avatar="avatar2"
-        name="AppleInsider"
-        username="@appleinsider"
-      />
-      <SuggestProfile
-        avatar="avatar3"
-        name="AppleInsider"
-        username="@appleinsider"
-      />
+      {profiles.map(profile => (
+        <SuggestProfile
+          avatar={profile.avatar}
+          name={profile.name}
+          username={profile.username}
+          verified={profile.verified}
+        />
+      ))}
       <Link to="/findpeople">
         <FindPeople>
-          <Icon src={peopleIcon} alt="people" />Find people you know
+          <Icon src={peopleIcon} alt="people" />
+          Find people you know
         </FindPeople>
       </Link>
     </WhoToFollow>

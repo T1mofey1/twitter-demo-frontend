@@ -1,11 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
 
-const size = {
-  extrasmall: "6px 22px",
-  small: "7px 24px",
-  medium: "9px 27px",
-  large: "10.5px 15px"
+const sizeBtn = {
+  extrasmall: '6px 22px',
+  small: '7px 24px',
+  medium: '9px 27px',
+  large: '10.5px 15px',
 };
 
 const StyledButton = styled.button`
@@ -14,21 +15,26 @@ const StyledButton = styled.button`
   border: 1px solid #1da1f2;
   font-weight: bold;
   font-size: 14px;
-  background-color: ${props =>
-    props.color === "primary" ? "#1DA1F2" : "#fff"};
-  color: ${props => (props.color === "primary" ? "#fff" : "#1DA1F2")};
-  padding: ${props => size[props.size ? props.size : "m"]};
-  min-width: ${props => (props.size === "large" ? "128px" : "0")};
+  background-color: ${({ color }) => (color === 'primary' ? '#1DA1F2' : '#fff')};
+  color: ${({ color }) => (color === 'primary' ? '#fff' : '#1DA1F2')};
+  padding: ${({ size }) => sizeBtn[size || 'm']};
+  min-width: ${({ size }) => (size === 'large' ? '128px' : '0')};
   &:hover {
-    background-color: ${props =>
-      props.color === "primary" ? "#009DE0;" : "#E5F5FB;"}
+    background-color: ${({ color }) => (color === 'primary' ? '#009DE0;' : '#E5F5FB;')}
     border-color: #009DE0;
+  }
 `;
 
-function Button(props) {
+type Props = {
+  size: string,
+  color: string,
+  children: string,
+};
+
+function Button({ size, color, children }: Props) {
   return (
-    <StyledButton size={props.size} color={props.color}>
-      {props.children}
+    <StyledButton size={size} color={color}>
+      {children}
     </StyledButton>
   );
 }

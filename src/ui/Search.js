@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import loupe from "./icons/loupe.svg";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import loupe from './icons/loupe.svg';
 
 const Search = styled.input`
   background: #f5f8fa;
@@ -25,7 +26,7 @@ const SearchWrap = styled.div`
   justify-content: flex-end;
   position: relative;
   &:after {
-    content: "";
+    content: '';
     background-image: url(${loupe});
     background-repeat: no-repeat;
     display: block;

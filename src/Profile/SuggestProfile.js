@@ -1,9 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import ProfileName from "./ProfileName";
-import Username from "./UserName";
-import Button from "../ui/Button";
-import deleteIcon from "./img/delete-icon.svg";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import ProfileName from './Name';
+import Username from './UserName';
+import Button from '../ui/Button';
+import deleteIcon from './img/delete-icon.svg';
 
 const Profile = styled.div`
   border-bottom: 1px solid #e6ecf0;
@@ -46,21 +48,36 @@ const Delete = styled.img`
   cursor: pointer;
 `;
 
-export default function(props) {
-  return (
-    <Profile>
-      <Avatar
-        src={process.env.PUBLIC_URL + "img/" + props.avatar + ".png"}
-        alt={props.name}
-      />
+type Props = {
+  avatar: string,
+  name: string,
+  verified: null | boolean,
+  username: string,
+};
+
+const SuggestProfie = ({
+  avatar, name, verified, username,
+}: Props) => (
+  <Profile>
+    <Avatar src={avatar} />
+    <Link
+      to={{
+        pathname: `/${username}`,
+        state: { user: { username, name } },
+      }}
+    >
       <User>
-        <StyledName verified={props.verified}>{props.name}</StyledName>
-        <StyledUsername to={props.username}>{props.username}</StyledUsername>
+        <StyledName verified={verified}>{name}</StyledName>
+        <StyledUsername to={username}>{username}</StyledUsername>
       </User>
-      <ButtonWrap>
-        <Button size="extrasmall">Follow</Button>
-      </ButtonWrap>
-      <Delete src={deleteIcon} alt="delete" />
-    </Profile>
-  );
-}
+    </Link>
+    <ButtonWrap>
+      <Button size="extrasmall" color="">
+        Follow
+      </Button>
+    </ButtonWrap>
+    <Delete src={deleteIcon} alt="delete" />
+  </Profile>
+);
+
+export default SuggestProfie;

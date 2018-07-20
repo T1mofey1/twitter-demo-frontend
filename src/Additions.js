@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+/* @flow */
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Copyright = styled.div`
   display: flex;
@@ -16,10 +17,10 @@ const StyledLink = styled(Link)`
   color: #718290;
 `;
 
-export default function() {
+export default function () {
   return (
     <Copyright>
-      <StyledLink to="https://twitter.com/">© 2018 Twitter</StyledLink>
+      <StyledLink to="">© 2018 Twitter</StyledLink>
       <StyledLink to="/about">About</StyledLink>
       <StyledLink to="/help">Help Center</StyledLink>
       <StyledLink to="/terms">Terms</StyledLink>
