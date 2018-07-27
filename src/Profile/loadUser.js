@@ -1,5 +1,4 @@
-const hostname = 'https://twitter-demo.erodionov.ru';
-const secretCode = process.env.REACT_APP_SECRET_CODE || '';
+import hostname, { secretCode } from '../api';
 
 const loadUser = id => dispatch => fetch(`${hostname}/api/v1/accounts/${id}?access_token=${secretCode}`)
   .then(response => response.json())

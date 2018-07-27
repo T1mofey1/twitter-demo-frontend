@@ -14,13 +14,12 @@ import Media from './Media';
 import WhoToFollow from './WhoToFollow';
 import TrendList from './TrendList';
 import Copyright from '../Additions';
-import loadUserAction from '../actions/loadUser';
-import loadTweetsAction from '../actions/loadTweets';
+import loadUserAction from './loadUser';
+import loadTweetsAction from '../Feed/loadTweets';
 
 type Props = {
   match: Match,
-  loadTweets: [],
-  loadUser: [],
+  dispatch: Function,
   userData: {
     id: string,
     header: string,
@@ -41,24 +40,18 @@ const mapStateToProps = state => ({
   tweetsData: state.tweets,
 });
 
-const mapDispatchToProps = dispatch => ({
-  loadUser: id => dispatch(loadUserAction(id)),
-  loadTweets: () => dispatch(loadTweetsAction()),
-});
-
 class ProfilePage extends Component<Props> {
   componentDidMount() {
     const {
-      loadTweets,
-      loadUser,
       match: {
         params: { id },
       },
+      dispatch,
     } = this.props;
 
-    loadUser(id);
+    dispatch(loadUserAction(id));
 
-    loadTweets();
+    dispatch(loadTweetsAction());
   }
 
   render() {
@@ -118,7 +111,4 @@ class ProfilePage extends Component<Props> {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ProfilePage);
+export default connect(mapStateToProps)(ProfilePage);
