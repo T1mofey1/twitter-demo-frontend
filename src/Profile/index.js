@@ -16,6 +16,7 @@ import TrendList from './TrendList';
 import Copyright from '../Additions';
 import loadUserAction from './loadUser';
 import loadTweetsAction from '../Feed/loadTweets';
+import loadUserFollowers from './loadFollowers';
 
 type Props = {
   match: Match,
@@ -30,14 +31,16 @@ type Props = {
     avatar: string,
     created_at: string,
     display_name: string,
-    username: string,
+    username: string
   },
   tweetsData: [],
+  followersData: []
 };
 
 const mapStateToProps = state => ({
   userData: state.user,
   tweetsData: state.tweets,
+  followersData: state.followers,
 });
 
 class ProfilePage extends Component<Props> {
@@ -51,18 +54,35 @@ class ProfilePage extends Component<Props> {
 
     dispatch(loadUserAction(id));
 
-    dispatch(loadTweetsAction());
+    dispatch(loadTweetsAction(id));
+
+    dispatch(loadUserFollowers(id));
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      match: {
+        params: { id },
+      },
+      dispatch,
+    } = this.props;
+    if (prevProps.match.params.id !== id) {
+      dispatch(loadUserAction(id));
+
+      dispatch(loadTweetsAction(id));
+
+      dispatch(loadUserFollowers(id));
+    }
   }
 
   render() {
-    const { userData, tweetsData } = this.props;
+    const { userData, tweetsData, followersData } = this.props;
     return (
       <div>
         <Helmet>
           <title>
             {userData.display_name ? userData.display_name : ''} (@
-            {userData.username ? userData.username : ''}
-            ) | Twitter
+            {userData.username ? userData.username : ''}) | Twitter
           </title>
         </Helmet>
         <ProfileImage header={userData.header} />
@@ -82,7 +102,10 @@ class ProfilePage extends Component<Props> {
                 description={userData.note}
                 joined={userData.created_at}
               />
-              <FollowersUKnow currentUser={userData.id} />
+              <FollowersUKnow
+                currentUser={userData.id}
+                followers={followersData}
+              />
               <Media currentUser={userData.id} />
             </div>
             <div className="col-lg-6">
@@ -94,13 +117,17 @@ class ProfilePage extends Component<Props> {
                 <Route
                   path={`/${userData.id}`}
                   render={() => (
-                    <Feed tweets={tweetsData} avatar={userData.avatar} currentUser={userData.id} />
+                    <Feed
+                      tweets={tweetsData}
+                      avatar={userData.avatar}
+                      currentUser={userData.id}
+                    />
                   )}
                 />
               </Switch>
             </div>
             <div className="col-lg-3">
-              <WhoToFollow />
+              <WhoToFollow followers={followersData} />
               <TrendList />
               <Copyright />
             </div>

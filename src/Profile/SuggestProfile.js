@@ -23,6 +23,9 @@ const User = styled.div`
 
 const Avatar = styled.img`
   position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
 `;
 
 const StyledName = styled(ProfileName)`
@@ -51,23 +54,22 @@ const Delete = styled.img`
 type Props = {
   avatar: string,
   name: string,
-  verified: null | boolean,
   username: string,
+  id: number,
 };
 
 const SuggestProfie = ({
-  avatar, name, verified, username,
+  avatar, name, username, id,
 }: Props) => (
   <Profile>
-    <Avatar src={avatar} />
     <Link
       to={{
-        pathname: `/${username}`,
-        state: { user: { username, name } },
+        pathname: `/${id}`,
       }}
     >
+      <Avatar src={avatar} />
       <User>
-        <StyledName verified={verified}>{name}</StyledName>
+        <StyledName>{name}</StyledName>
         <StyledUsername to={username}>{username}</StyledUsername>
       </User>
     </Link>

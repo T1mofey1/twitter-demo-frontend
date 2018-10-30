@@ -57,11 +57,13 @@ const Content = styled.div`
 const Text = styled.div`
   line-height: 30px;
   font-size: 25px;
+  word-break: break-word;
 `;
 
 const Image = styled.img`
   margin-top: 13px;
   width: 100%;
+  max-height: 400px;
 `;
 
 const Activity = styled.div`
@@ -130,7 +132,7 @@ const Pinned = styled.div`
   padding-left: 71px;
   position: relative;
   &:after {
-    content: '';
+    content: "";
     background-image: url(${pinnedIcon});
     background-repeat: no-repeat;
     display: block;
@@ -159,7 +161,7 @@ type Props = {
   share: number,
   likes: boolean,
   liked: number,
-  avatar: string,
+  avatar: string
 };
 
 const Tweet = ({
@@ -190,7 +192,9 @@ const Tweet = ({
         </TweetHead>
         <Content>
           <Text dangerouslySetInnerHTML={{ __html: text }} />
-          {images ? images.map(image => <Image src={image.url} />) : null}
+          {images
+            ? images.map(image => <Image key={image.url} src={image.url} />)
+            : null}
         </Content>
         <Activity>
           <div className="row">

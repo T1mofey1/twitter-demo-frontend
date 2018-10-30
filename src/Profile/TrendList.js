@@ -61,7 +61,7 @@ const Change = styled.button`
   color: #1da1f2;
   &:before {
     cursor: default;
-    content: '';
+    content: "";
     position: absolute;
     width: 3px;
     height: 3px;
@@ -78,7 +78,12 @@ export default function () {
       <BlockTitle>United Kingdom Trends</BlockTitle>
       <Change>Change</Change>
       {trends.map(trend => (
-        <Trend name={trend.name} count={trend.count} description={trend.description} />
+        <Trend
+          key={trend.name}
+          name={trend.name}
+          count={trend.count}
+          description={trend.description}
+        />
       ))}
     </TrendsWrap>
   );

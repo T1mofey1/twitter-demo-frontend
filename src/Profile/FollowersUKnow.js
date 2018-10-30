@@ -2,31 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import users from '../users';
 import followersIcon from './img/followers-icon.svg';
-
-const publicPath = process.env.PUBLIC_URL || '';
-
-const followers = [
-  {
-    avatar: `${publicPath}img/follower1.png`,
-  },
-  {
-    avatar: `${publicPath}img/follower2.png`,
-  },
-  {
-    avatar: `${publicPath}img/follower3.png`,
-  },
-  {
-    avatar: `${publicPath}img/follower4.png`,
-  },
-  {
-    avatar: `${publicPath}img/follower5.png`,
-  },
-  {
-    avatar: `${publicPath}img/follower6.png`,
-  },
-];
 
 const StyledFollowersUKnow = styled.div`
   position: relative;
@@ -58,21 +34,23 @@ const Follower = styled.img`
 
 type Props = {
   currentUser: string,
+  followers: [],
 };
 
-const FollowersYouKnow = ({ currentUser }: Props) => (
+const FollowersYouKnow = ({ currentUser, followers }: Props) => (
   <div>
     <StyledFollowersUKnow>
       <Icon src={followersIcon} alt="Followers you know" />
       <Link to={`/${currentUser}/followers_you_follow}`}>
-        <LinkText>6 Followers you know</LinkText>
+        <LinkText>Followers you know</LinkText>
       </Link>
     </StyledFollowersUKnow>
     <Followers>
-      {users.slice(1, 7).map((user, index) => (
+      {Object.values(followers).map((user, index) => (
         <Link
+          key={user.id}
           to={{
-            pathname: `/${user.username}`,
+            pathname: `/${user.id}`,
             state: { user },
           }}
         >

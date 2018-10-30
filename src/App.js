@@ -3,7 +3,10 @@ import React from 'react';
 import 'flexboxgrid2';
 import 'normalize.css';
 import {
-  BrowserRouter as Router, Route, Redirect, Switch,
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -32,6 +35,8 @@ export default function () {
             <Route exact path="/cookies" component={links} />
             <Route exact path="/ads" component={links} />
             <Route exact path="/search" component={links} />
+            <Route exact path="/findpeople" component={links} />
+            <Route exact path="/who_to_follow/suggestions" component={links} />
             <Route path="/:id" component={ProfilePage} />
             <Redirect from="/" to="/1" />
           </Switch>

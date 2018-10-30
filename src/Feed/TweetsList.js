@@ -4,13 +4,14 @@ import Tweet from './Tweet';
 
 type Props = {
   tweets: [],
-  avatar: string,
+  avatar: string
 };
 
 const TweetsList = ({ tweets, avatar }: Props) => (
   <div>
     {tweets.map(tweet => (
       <Tweet
+        key={tweet.id}
         pinned={tweet.pinned}
         avatar={avatar}
         name={tweet.account.display_name}

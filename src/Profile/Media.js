@@ -8,21 +8,27 @@ const publicPath = process.env.PUBLIC_URL || '';
 
 const mediaFiles = [
   {
+    id: 1,
     picture: `${publicPath}img/media1.png`,
   },
   {
+    id: 2,
     picture: `${publicPath}img/media2.png`,
   },
   {
+    id: 3,
     picture: `${publicPath}img/media3.png`,
   },
   {
+    id: 4,
     picture: `${publicPath}img/media4.png`,
   },
   {
+    id: 5,
     picture: `${publicPath}img/media5.png`,
   },
   {
+    id: 6,
     picture: `${publicPath}img/media6.png`,
   },
 ];
@@ -56,7 +62,7 @@ const Picture = styled.img`
 `;
 
 type MediaProps = {
-  currentUser: string,
+  currentUser: string
 };
 
 const Media = ({ currentUser }: MediaProps) => (
@@ -64,10 +70,14 @@ const Media = ({ currentUser }: MediaProps) => (
     <StyledMedia>
       <Icon src={mediaIcon} alt="Media" />
       <Link to={`/${currentUser}/media`}>
-        <LinkText>522 Photos and videos</LinkText>
+        <LinkText>Photos and videos</LinkText>
       </Link>
     </StyledMedia>
-    <Pictures>{mediaFiles.map(media => <Picture src={media.picture} />)}</Pictures>
+    <Pictures>
+      {mediaFiles.map(media => (
+        <Picture key={media.id} src={media.picture} />
+      ))}
+    </Pictures>
   </div>
 );
 
