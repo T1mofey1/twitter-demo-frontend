@@ -1,5 +1,6 @@
 /* @flow */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router-dom';
 import type { Match } from 'react-router-dom';
@@ -13,12 +14,12 @@ import Media from './Media';
 import WhoToFollow from './WhoToFollow';
 import TrendList from './TrendList';
 import Copyright from '../Additions';
+import loadUserAction from './loadUser';
+import loadTweetsAction from '../Feed/loadTweets';
 
 type Props = {
   match: Match,
-};
-
-type State = {
+  dispatch: Function,
   userData: {
     id: string,
     header: string,
@@ -34,45 +35,27 @@ type State = {
   tweetsData: [],
 };
 
-export default class ProfilePage extends Component<Props, State> {
-  state = {
-    userData: {
-      display_name: '',
-      username: '',
-      header: '',
-      note: '',
-      following_count: 0,
-      followers_count: 0,
-      statuses_count: 0,
-      avatar: '',
-      id: '',
-      created_at: '',
-    },
-    tweetsData: [],
-  };
+const mapStateToProps = state => ({
+  userData: state.user,
+  tweetsData: state.tweets,
+});
 
+class ProfilePage extends Component<Props> {
   componentDidMount() {
-    const hostname = 'https://twitter-demo.erodionov.ru';
-    const secretCode = process.env.REACT_APP_SECRET_CODE || '';
     const {
       match: {
         params: { id },
       },
+      dispatch,
     } = this.props;
 
-    fetch(`${hostname}/api/v1/accounts/${id}?access_token=${secretCode}`)
-      .then(response => response.json())
-      .then(userData => this.setState({ userData }))
-      .catch(err => err);
+    dispatch(loadUserAction(id));
 
-    fetch(`${hostname}/api/v1/timelines/home/?access_token=${secretCode}`)
-      .then(response => response.json())
-      .then(tweetsData => this.setState({ tweetsData }))
-      .catch(err => err);
+    dispatch(loadTweetsAction());
   }
 
   render() {
-    const { userData, tweetsData } = this.state;
+    const { userData, tweetsData } = this.props;
     return (
       <div>
         <Helmet>
@@ -127,3 +110,5 @@ export default class ProfilePage extends Component<Props, State> {
     );
   }
 }
+
+export default connect(mapStateToProps)(ProfilePage);
